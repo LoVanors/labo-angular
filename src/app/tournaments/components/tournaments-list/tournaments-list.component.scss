@@ -1,0 +1,53 @@
+/* Styles pour centrer le tableau en hauteur */
+main {
+  display: flex; /* Utilisation de flexbox */
+  flex-direction: column;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  height: 87.5vh; /* Ajuster la hauteur du conteneur principal */
+}
+
+/* Style optionnel pour ajuster la largeur du tableau */
+div {
+  max-width: 100%; /* Ajuster la largeur du tableau à la largeur disponible */
+  overflow-x: auto; /* Ajouter une barre de défilement horizontale si nécessaire */
+}
+
+table {
+  border: solid black 2px;
+  justify-content: space-evenly;
+  thead {
+    background-color: #929283;
+    color: white;
+
+    tr {
+      border: solid black 2px;
+    }
+
+    td {
+      text-align: center;
+      border: solid black 2px;
+      padding: 5px;
+    }
+  }
+
+  tbody {
+    tr {
+      border: solid black 2px;
+    }
+
+    td {
+      text-align: center;
+      border: solid black 2px;
+      padding: 5px;
+    }
+  }
+}
+
+.search{
+  text-align: right;
+  color: grey;
+  font-size: 1.25rem;
+  display: flex; /* Utilisation de flexbox */
+
+}

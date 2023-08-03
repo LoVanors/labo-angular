@@ -7,10 +7,15 @@ import {MenuService} from "../../services/menu.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
-constructor(private _menuServ:MenuService) {}
+  menu!:boolean;
+  connected!:boolean;
+constructor(private _menuServ:MenuService) {
+  this._menuServ.menuSub$.subscribe( result => this.menu=result);
+}
+  test(){
+    this.connected=!this.connected;
+  }
   showMenu() {
     this._menuServ.showMenu();
-    console.log((this._menuServ.menuSub))
   }
 }

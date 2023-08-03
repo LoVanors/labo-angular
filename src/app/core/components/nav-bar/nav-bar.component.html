@@ -1,13 +1,14 @@
-<nav *ngIf="menu" id="main-menu" >
-  <div class="menu-header">
-    <a class="menu-button" >
-      <div></div>
-      <div></div>
-      <div></div>
-    </a>
-  </div >
-  <ul>
-    <li><a >Accueil</a></li>
-    <li><a >Tournois</a></li>
+<nav *ngIf="menu">
+  <ul *ngFor="let item of items">
+    <li>
+      <a [ngClass]="{isActive:item.showChildren}" [routerLink]="item.url" (click)="toggleChildren(item)"><i class="{{item.icon}}" ></i> {{item.label}}</a>
+      <div *ngIf="item.children && item.showChildren">
+      <ul *ngFor="let children of item.children">
+        <li>
+          <a [routerLink]="children.url"><i class="{{children.icon}}" ></i> {{children.label}}</a>
+        </li>
+      </ul>
+      </div>
+    </li>
   </ul>
 </nav>

@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {NavBarComponent} from "./core/components/nav-bar/nav-bar.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
+  {path: 'members', loadChildren: () => import('./members/members.module').then(m => m.MembersModule)},
+  {path: 'tournaments', loadChildren: () => import('./tournaments/tournaments.module').then(m => m.TournamentsModule)},
+  {path: '', component: HomeComponent},
 ];
 
 @NgModule({

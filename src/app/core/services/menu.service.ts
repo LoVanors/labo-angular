@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class MenuService {
 
-  private _menuSub:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(true);
+  private _menuSub:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   constructor() { }
 
   get menuSub$(){

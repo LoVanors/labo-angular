@@ -1,8 +1,11 @@
 <header>
-  <a class="menu-button"  (click)="showMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+  <a type="button" (click)="showMenu()">
+    <i *ngIf="!menu" class="pi pi-caret-down menu-button" ></i>
+    <i *ngIf="menu" class="pi pi-caret-up menu-button" ></i>
   </a>
   <h1>Gestion Tournoi</h1>
+  <a type="button" (click)="test()">
+    <i *ngIf="!connected" class="pi pi-sign-in sign-button" ></i>
+    <i *ngIf="connected" class="pi pi-sign-out sign-button" ></i>
+  </a>
 </header>

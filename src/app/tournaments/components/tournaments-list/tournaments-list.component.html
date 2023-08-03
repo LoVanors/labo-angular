@@ -1,0 +1,45 @@
+<main>
+  <div>
+    <div class="search">
+      <i class="pi pi-cog" style="color: grey" (click)="searchForm()"></i>
+      <form *ngIf="searchFormActive" formGroup="searchCtrl">
+        <p-autoComplete formControlName="selectedCountry" suggestions="filteredOptions" (completeMethod)="filterOption($event)" field="name"></p-autoComplete>
+        <p-dropdown options="searchTypeList" optionLabel="searchType"></p-dropdown>
+      </form>
+    </div>
+    <table *ngIf="tournamentsList$ | async">
+      <thead>
+      <tr>
+        <td>Nom</td>
+        <td>Lieu</td>
+        <td>Participants</td>
+        <td>Elo</td>
+        <td>Catégorie(s)</td>
+        <td>Féminin</td>
+        <td>Fin des inscriptions</td>
+        <td>Compte</td>
+        <td>Inscriptions</td>
+        <td>Inscrit</td>
+        <td>Statut</td>
+        <td>Manche actuelle</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tournament of tournaments ">
+        <td>{{tournament.name}}</td>
+        <td>{{tournament.location}}</td>
+        <td>{{tournament.minPlayers}} / {{tournament.maxPlayers}}</td>
+        <td>{{tournament.eloMin}} / {{tournament.eloMax}}</td>
+        <td>{{tournament.categories}}</td>
+        <td>{{tournament.womenOnly}}</td>
+        <td>{{tournament.endOfRegistrationDate | date:'HH:mm dd/MM/yy'}}</td>
+        <td>{{tournament.count}}</td>
+        <td>{{tournament.canRegister? 'ouvertes':'fermées'}}</td>
+        <td>{{tournament.isRegistered? 'inscrit':'pas inscrit'}}</td>
+        <td>{{tournament.status}}</td>
+        <td>{{tournament.currentRound}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</main>
