@@ -1,4 +1,9 @@
+a{
+  color: white;
+}
+
 header{
+  user-select: none;
   height: 5vh;
   padding: 20px;
   background-color: #65655b;
@@ -7,6 +12,7 @@ header{
   justify-content: center;
   align-items: center;
   color: white;
+
 }
 .menu-button{
   position: absolute;
@@ -14,6 +20,11 @@ header{
   top: 1.5rem;
   font-size: 3rem;
 }
+.menu-button.active{
+  transform: rotate(180deg);
+}
+
+
 .sign-button{
   position: absolute;
   right: 2rem;

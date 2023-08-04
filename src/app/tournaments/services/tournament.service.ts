@@ -12,12 +12,6 @@ export class TournamentService {
 
   constructor(private _http: HttpClient) { }
 
-  // private _tournaments = new BehaviorSubject<TournamentIndexDTO>(undefined);
-
-  // get tournaments$():Observable<TournamentIndexDTO>{
-  //   return this._tournaments.asObservable();
-  // }
-
   getTournamentsFromServer():Observable<TournamentIndexDTO> {
    return  this._http.get<TournamentIndexDTO>(`${environment.apiURL}/Tournament`);
   }

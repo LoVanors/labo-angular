@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../core/services/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+    username!:string;
+    protected readonly sessionStorage = sessionStorage;
+
+    constructor(private _authServ: AuthService) {
+    }
 
 }

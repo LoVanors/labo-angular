@@ -1,0 +1,69 @@
+a{
+color: white;
+}
+
+input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+main {
+  height: 87.5vh;
+  justify-content: center;
+  text-align: center
+}
+
+.button {
+  padding: 0.5rem 0.5rem;
+  border-radius: 15px;
+  background-color: blue;
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px 4px grey;
+  transition: transform 0.1s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.button:active {
+  transform: translateY(-3px) scale(0.95);
+}
+
+.error{
+  color: darkred;
+  font-size: 12px;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 4rem;
+
+}
+
+.card {
+  height: 195px;
+  width: 275px;
+  background-color: goldenrod;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+
+}
+

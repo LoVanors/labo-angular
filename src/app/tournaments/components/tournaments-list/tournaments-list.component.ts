@@ -15,9 +15,6 @@ export class TournamentsListComponent implements OnInit {
   tournamentsList$!: Observable<TournamentIndexDTO>;
   tournaments: TournamentDTO[]|null = [];
   searchFormActive: boolean=false;
-  searchCtrl!: string;
-  filteredOptions: string[] | undefined;
-  searchTypeList: string[]=[];
 
   constructor(private _tournamentsService: TournamentService) { }
 
@@ -36,7 +33,4 @@ export class TournamentsListComponent implements OnInit {
     this.searchFormActive = !this.searchFormActive;
   }
 
-  filterOption($event: AutoCompleteCompleteEvent) {
-    
-  }
 }

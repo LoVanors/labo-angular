@@ -19,6 +19,7 @@ table {
   thead {
     background-color: #929283;
     color: white;
+    user-select: none;
 
     tr {
       border: solid black 2px;

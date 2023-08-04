@@ -10,8 +10,12 @@ nav {
     display: flex;
     align-items: baseline;
     flex-direction: column;
+    .isActive{
+      color: palegoldenrod;
+    }
     ul{
       padding: 1rem;
+      color: white;
     }
   }
 }
@@ -22,7 +26,8 @@ a{
   position: relative;
   color: white;
 }
-
-.isActive{
-  color: palegoldenrod;
+a:hover{
+  color: black;
 }
+
+

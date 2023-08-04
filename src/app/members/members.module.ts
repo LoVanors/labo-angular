@@ -9,6 +9,7 @@ import {SharedModule} from "primeng/api";
 import {MemberService} from "./services/member.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import { LoginComponent } from '../login/login.component';
 
 
 
@@ -17,7 +18,8 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
     NewMemberComponent,
     SingleMemberComponent,
     MemberListComponent,
-    EditMemberComponent
+    EditMemberComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

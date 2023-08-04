@@ -1,12 +1,5 @@
 <main>
   <div>
-    <div class="search">
-      <i class="pi pi-cog" style="color: grey" (click)="searchForm()"></i>
-      <form *ngIf="searchFormActive" formGroup="searchCtrl">
-        <p-autoComplete formControlName="selectedCountry" suggestions="filteredOptions" (completeMethod)="filterOption($event)" field="name"></p-autoComplete>
-        <p-dropdown options="searchTypeList" optionLabel="searchType"></p-dropdown>
-      </form>
-    </div>
     <table *ngIf="tournamentsList$ | async">
       <thead>
       <tr>
