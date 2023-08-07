@@ -1,50 +1,43 @@
 <main>
-  <button (click)="filterForm()" ><i class="pi pi-filter search"></i></button>
-  <div class="card-container">
-    <div >
-      <div *ngIf="filterByFormActive">
-        <form class="card" [formGroup]="filterByForm" (ngSubmit)="findByFilter()">
-          <div class="flex">
-          <div>
-            <input class="input" type="text" placeholder="Nom" formControlName="name">
-          </div>
-          <div>
-            <select class="input" formControlName="categories">
-              <option value="" hidden>Catégories</option>
-              <option value="JUNIOR">Junior</option>
-              <option value="SENIOR">Senior</option>
-              <option value="VETERAN">Veteran</option>
-            </select>
-          </div>
-          </div>
-          <div class="flex">
-          <div>
-            <select class="input" formArrayName="status">
-              <option value="" hidden>Statuts</option>
-              <option value="WAITINGFORPLAYER">WaitingForPlayers</option>
-              <option value="INPROGRESS">InProgress</option>
-              <option value="CLOSED">Closed</option>
-            </select>
-          </div>
-          <div class="flex">
-            <p>Réservé aux filles</p>
-            <input type="checkbox" formControlName="womenOnly">
-          </div>
-          </div>
-          <div class="flex">
-          <div>
-            <input type="button" class="button" value="Reset">
-          </div>
-          <div>
-            <input type="submit" class="button" value="Rechercher">
-          </div>
-          </div>
-        </form>
-      </div>
+  <p-progressSpinner *ngIf="spinner"></p-progressSpinner>
+  <div *ngIf="tournamentsList$ | async">
+  <div *ngIf="!spinner" class="border">
+    <button (click)="filterForm()" class="form-buttons" ><i class="pi pi-filter search"></i></button>
+    <div *ngIf="filterByFormActive" class="form-container">
+      <form class="form" [formGroup]="filterByForm" (ngSubmit)="findByFilter()">
+        <div class="flex">
+            <div class="form-field ">
+              <input type="text" placeholder="Nom" formControlName="name">
+            </div>
+            <div class="form-field">
+              <select formArrayName="status">
+                <option value="" hidden>Statuts</option>
+                <option value="WAITINGFORPLAYER">WaitingForPlayers</option>
+                <option value="INPROGRESS">InProgress</option>
+                <option value="CLOSED">Closed</option>
+              </select>
+            </div>
+            <div class="form-field ">
+              <select formControlName="categories">
+                <option value="" hidden>Catégories</option>
+                <option value="JUNIOR">Junior</option>
+                <option value="SENIOR">Senior</option>
+                <option value="VETERAN">Veteran</option>
+              </select>
+            </div>
+            <div class="form-field flex">
+              <input id="womenOnly" type="checkbox" formControlName="womenOnly">
+              <label for="womenOnly">Tournoi féminin</label>
+            </div>
+        </div>
+        <div class="form-buttons">
+          <input type="button" class="reset" value="Reset" (click)="resetFilter()">
+          <input type="submit" value="Rechercher">
+        </div>
+      </form>
     </div>
-  </div>
-  <div>
-    <table *ngIf="tournamentsList$ | async">
+
+    <table >
       <thead>
       <tr>
         <td>Nom</td>
@@ -78,5 +71,6 @@
       </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </main>

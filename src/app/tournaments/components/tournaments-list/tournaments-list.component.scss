@@ -5,6 +5,7 @@ main {
   justify-content: center; /* Centrer horizontalement */
   align-items: center; /* Centrer verticalement */
   height: 87.5vh; /* Ajuster la hauteur du conteneur principal */
+  margin: 0 auto;
 }
 
 /* Style optionnel pour ajuster la largeur du tableau */
@@ -13,8 +14,6 @@ div {
 }
 
 table {
-  border: solid goldenrod 10px;
-  border-radius: 15px;
   justify-content: space-evenly;
   width: 1330px;
 
@@ -29,7 +28,6 @@ table {
 
     td {
       text-align: center;
-      //border: solid black 2px;
       padding: 5px;
     }
   }
@@ -42,83 +40,102 @@ table {
     td {
       text-align: center;
       border: solid black 2px;
+      background-color: white;
       padding: 5px;
     }
   }
 }
 
-.search {
-  text-align: right;
-  color: grey;
-  font-size: 1.25rem;
-  display: flex;
+/* Style pour le conteneur du formulaire */
+.form-container {
+  background-color: goldenrod;
+  border-radius: 16px;
+  max-width: 100%;
 }
 
-main {
+/* Style pour les champs de formulaire */
+.form-field {
+  margin-left: 1rem;
+  margin-bottom: 15px;
+}
+
+.form-field input {
+  width: 200px;
+}
+
+.form-field select {
+  width: 200px;
+}
+
+
+/* Style pour les boutons */
+.form-buttons {
   display: flex;
   justify-content: center;
-  height: 87.5vh;
+  margin-top: 20px;
 }
 
-label {
-  display: flex;
-}
-
-.adjust {
-  text-align: center;
-}
-
-.button {
-  margin-top: 1rem;
-  border-radius: 15px;
-  background-color: blue;
-  color: white;
+/* Style pour le bouton "Rechercher" */
+.form-buttons input {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  box-shadow: 0 2px 4px 4px grey;
-  transition: transform 0.1s ease;
-  height: 2rem;
-  width: 210px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 16px;
 }
 
-.button:hover {
+.form-buttons input:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
-.button:active {
+.form-buttons input:active {
   transform: translateY(-3px) scale(0.95);
 }
 
-.card-container {
-  display: flex;
-  width: 1310px;
-  align-items: center;
-  margin: 0 auto 1rem;
-  justify-content: center;
+button {
+  padding: 10px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 16px;
 }
 
-.card {
+button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+button:active {
+  transform: translateY(-3px) scale(0.95);
+}
+
+/* Style pour le bouton "Reset" */
+.form-buttons input.reset {
+  align-self:start;
+  background-color: #dc3545;
+}
+
+/* Style pour le formulaire */
+.form {
+  width: 100%;
+  max-width: 400px; /* Ajustez la largeur maximale selon vos besoins */
+  padding: 2rem;
+}
+
+.flex {
+  display: inline-flex;
+}
+
+.border{
+  border: solid goldenrod 10px;
+  border-radius: 15px;
   background-color: goldenrod;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  padding: 1rem;
-  width: 1250px;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.input {
-  margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+label{
   width: 200px;
-
-}
-
-
-.flex{
-  display: flex;
-  justify-content: space-evenly;
 }
