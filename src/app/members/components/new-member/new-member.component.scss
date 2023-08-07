@@ -1,5 +1,60 @@
-main{
+main {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+  height: 100vh;
+}
 
+.button {
+  padding: 0.5rem 0.5rem;
+  border-radius: 15px;
+  background-color: blue;
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px 4px grey;
+  transition: transform 0.1s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.button:active {
+  transform: translateY(-3px) scale(0.95);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.card {
+  width: 400px;
+  background-color: goldenrod;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card p {
+  text-align: left;
+}
+
+.card input,
+.card select {
+  width: 200px;
+  margin-left: auto;
+  margin-bottom: 1rem;
 }

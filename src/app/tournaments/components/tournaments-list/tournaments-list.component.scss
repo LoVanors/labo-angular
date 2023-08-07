@@ -9,13 +9,15 @@ main {
 
 /* Style optionnel pour ajuster la largeur du tableau */
 div {
-  max-width: 100%; /* Ajuster la largeur du tableau à la largeur disponible */
-  overflow-x: auto; /* Ajouter une barre de défilement horizontale si nécessaire */
+  max-width: 100%;
 }
 
 table {
-  border: solid black 2px;
+  border: solid goldenrod 10px;
+  border-radius: 15px;
   justify-content: space-evenly;
+  width: 1330px;
+
   thead {
     background-color: #929283;
     color: white;
@@ -27,7 +29,7 @@ table {
 
     td {
       text-align: center;
-      border: solid black 2px;
+      //border: solid black 2px;
       padding: 5px;
     }
   }
@@ -45,10 +47,78 @@ table {
   }
 }
 
-.search{
+.search {
   text-align: right;
   color: grey;
   font-size: 1.25rem;
-  display: flex; /* Utilisation de flexbox */
+  display: flex;
+}
 
+main {
+  display: flex;
+  justify-content: center;
+  height: 87.5vh;
+}
+
+label {
+  display: flex;
+}
+
+.adjust {
+  text-align: center;
+}
+
+.button {
+  margin-top: 1rem;
+  border-radius: 15px;
+  background-color: blue;
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px 4px grey;
+  transition: transform 0.1s ease;
+  height: 2rem;
+  width: 210px;
+}
+
+.button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.button:active {
+  transform: translateY(-3px) scale(0.95);
+}
+
+.card-container {
+  display: flex;
+  width: 1310px;
+  align-items: center;
+  margin: 0 auto 1rem;
+  justify-content: center;
+}
+
+.card {
+  background-color: goldenrod;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 1250px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+
+}
+
+
+.flex{
+  display: flex;
+  justify-content: space-evenly;
 }

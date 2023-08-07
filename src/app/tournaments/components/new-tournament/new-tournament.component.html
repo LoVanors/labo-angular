@@ -1,1 +1,60 @@
-<main><p-progressSpinner></p-progressSpinner></main>
+<main>
+  <div class="card-container">
+    <form  class="card" [formGroup]="newTournamentForm" (ngSubmit)="addNewTournament()">
+    <div>
+      <p>Nom du tournoi</p>
+      <input class="input" type="text" placeholder="Nom de tournoi" formControlName="name">
+    </div>
+    <div>
+      <p>Lieu du tournoi</p>
+      <input class="input" type="text" placeholder="Lieu du tournoi" formControlName="location">
+    </div>
+    <div>
+      <p>Nombre minimum de joueurs</p>
+      <input class="input" type="number" placeholder="Nombre minimum de joueurs" formControlName="minPlayers" >
+    </div>
+    <div>
+      <p>Nombre maximum de joueurs</p>
+      <input class="input" type="number" placeholder="Nombre maximum de joueurs" formControlName="maxPlayers">
+    </div>
+    <div>
+      <p>Elo minimum requis</p>
+      <input class="input" type="number" placeholder="Elo minimum" formControlName="eloMin">
+    </div>
+    <div>
+      <p>Elo maximum accepté</p>
+      <input class="input" type="number" placeholder="Elo maximum" formControlName="eloMax">
+    </div>
+    <div >
+      <p>Catégories</p>
+      <div class="adjust">
+      <label >
+      <input type="checkbox"  value="JUNIOR" (change)="updateCategories($event)">
+        Junior
+      </label>
+      <label >
+      <input type="checkbox"  value="SENIOR" (change)="updateCategories($event)">
+        Senior
+      </label>
+      <label >
+      <input type="checkbox"  value="VETERAN" (change)="updateCategories($event)">
+        Vétéran
+      </label>
+      </div>
+    </div>
+    <div>
+      <p>
+      <input type="checkbox" formControlName="womenOnly" >
+        Tournoi féminin
+      </p>
+    </div>
+    <div>
+      <p>Date finale des inscriptions</p>
+      <input class="input" type="date" formControlName="endOfRegistrationDate">
+    </div>
+    <div>
+      <input type="submit" class="button" value="Créer tournoi">
+    </div>
+    </form>
+  </div>
+</main>

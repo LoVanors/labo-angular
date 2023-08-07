@@ -7,7 +7,7 @@ export interface TournamentAddDTO{
   maxPlayers: number;
   eloMin: number;
   eloMax: number;
-  categories: TournamentCategory[];
+  categories: TournamentCategory;
   womenOnly: boolean;
   endOfRegistrationDate: string;
 }

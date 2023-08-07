@@ -7,42 +7,39 @@ import {tap} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-    loginForm: FormGroup;
-    logs: LoginDTO = {username:'',password:''};
-    connectedUser?: UserDTO;
+  loginForm: FormGroup;
+  logs: LoginDTO = {username: '', password: ''};
+  connectionInfo: boolean = true;
 
-    constructor(private _authServ : AuthService,
-                private _FB : FormBuilder,
-                private _router : Router) {
-        this.loginForm = this._FB.group(
-            {
-                username: [null, [Validators.required]],
-                password: [null, [Validators.required]]
-            }
-        )
-    }
+  constructor(private _authServ: AuthService,
+              private _FB: FormBuilder,
+              private _router: Router) {
+    this.loginForm = this._FB.group(
+      {
+        username: [null, [Validators.required]],
+        password: [null, [Validators.required]]
+      }
+    )
+  }
 
-    login() {
-        if (this.loginForm.valid) {
-            this.logs.username = this.loginForm.get("username")?.value;
-            this.logs.password = this.loginForm.get("password")?.value;
-            this._authServ.login(this.logs.username, this.logs.password).pipe(
-                tap(() => this._router.navigateByUrl(''))
-            ).subscribe(
-                (data) => {
-                    sessionStorage.setItem("token", JSON.stringify(data.token));
-                    this.connectedUser = data.user;
-                    if (this.connectedUser.username) {
-                        sessionStorage.setItem("username", this.connectedUser.username)
-                    }
-                }
-            )
-console.log(this.connectedUser)
+  login() {
+    if (this.loginForm.valid) {
+      this.logs.username = this.loginForm.get("username")?.value;
+      this.logs.password = this.loginForm.get("password")?.value;
+      this._authServ.connect(this.logs.username, this.logs.password).pipe(
+        tap(() => this._router.navigateByUrl('/home'))
+      ).subscribe(
+        (data) => {
+          localStorage.setItem("token", JSON.stringify(data));
         }
+      )
+    }else {
+      this.connectionInfo = !this.connectionInfo;
     }
+  }
 }

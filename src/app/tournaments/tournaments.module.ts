@@ -13,6 +13,8 @@ import {TournamentInscriptionService} from "./services/tournament-inscription.se
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {DropdownModule} from "primeng/dropdown";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {JwtInterceptor} from "../core/interceptors/jwt.interceptor";
 
 
 
@@ -34,6 +36,7 @@ import {DropdownModule} from "primeng/dropdown";
     DropdownModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     TournamentService,
     MatchService,
     TournamentInscriptionService

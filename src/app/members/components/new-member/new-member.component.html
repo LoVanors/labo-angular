@@ -1,1 +1,34 @@
-<main><p-progressSpinner></p-progressSpinner></main>
+<main>
+  <div class="card-container">
+    <form class="card" [formGroup]="newMemberForm" (ngSubmit)="addNewMember()">
+      <div>
+        <p>Nom d'utilisateur</p>
+        <input type="text" placeholder="Nom d'utilisateur" formControlName="username">
+      </div>
+      <div>
+        <p>Adresse Email</p>
+        <input type="email" placeholder="Adesse mail" formControlName="email">
+      </div>
+      <div>
+        <p>Date de naissance</p>
+        <input type="date" formControlName="birthDate">
+      </div>
+      <div>
+        <p>Elo actuel</p>
+        <input type="number" placeholder="elo actuel" formControlName="elo">
+      </div>
+      <div>
+        <p>Genre</p>
+        <select formControlName="gender">
+          <option value="" hidden>Choisissez un genre</option>
+          <option value="MALE">Homme</option>
+          <option value="FEMALE">Femme</option>
+          <option value="OTHER">Autre</option>
+        </select>
+      </div>
+      <div>
+        <input class="button" type="submit" (click)="addNewMember()">
+      </div>
+    </form>
+  </div>
+</main>

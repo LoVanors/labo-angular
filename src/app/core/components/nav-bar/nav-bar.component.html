@@ -1,14 +1,30 @@
+
 <nav *ngIf="menu">
-  <ul *ngFor="let item of items">
+  <div *ngIf="connectedUser?.role==='Admin'">
+    <ul>
+      <li>
+        <a routerLink="/home" (click)="showMenu()"><i class="pi pi-home"></i> Accueil</a>
+      </li>
+    </ul>
+    <ul *ngFor="let item of items">
     <li>
       <a [ngClass]="{isActive:item.showChildren}" [routerLink]="item.url" (click)="toggleChildren(item)"><i class="{{item.icon}}" ></i> {{item.label}}</a>
       <div *ngIf="item.children && item.showChildren">
-      <ul *ngFor="let children of item.children">
-        <li>
-          <a [routerLink]="children.url"><i class="{{children.icon}}" ></i> {{children.label}}</a>
-        </li>
-      </ul>
+        <ul *ngFor="let children of item.children">
+          <li (click)="showMenu()">
+            <a [routerLink]="children.url" ><i class="{{children.icon}}" ></i> {{children.label}}</a>
+          </li>
+        </ul>
       </div>
     </li>
   </ul>
+  </div>
+  <div *ngIf="connectedUser?.role!=='Admin'">
+    <div>
+      <a routerLink="/home"><i class="pi pi-home"></i>Accueil</a>
+    </div>
+    <div>
+      <a routerLink="/tournaments"><i class="pi pi-sitemap"></i>Tournois</a>
+    </div>
+  </div>
 </nav>

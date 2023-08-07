@@ -1,8 +1,8 @@
 <main>
-    <div *ngIf="!sessionStorage.getItem('token')">
+    <div *ngIf="!connectedUser">
     <p-progressSpinner></p-progressSpinner>
     </div>
-    <div *ngIf="sessionStorage.getItem('token')">
-    <h2>Bienvenue {{sessionStorage.getItem("username")}}</h2>
+    <div *ngIf="connectedUser">
+    <h2>Bienvenue {{connectedUser.username}}</h2>
     </div>
 </main>

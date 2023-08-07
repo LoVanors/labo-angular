@@ -10,6 +10,8 @@ import {CoreModule} from "./core/core.module";
 import {TournamentsModule} from "./tournaments/tournaments.module";
 import {MembersModule} from "./members/members.module";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
     MembersModule,
     ProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

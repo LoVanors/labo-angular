@@ -16,13 +16,14 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-        if (this._authServ.getToken()) {
+      const token= this._authServ.getToken();
+
+        if (token) {
             let headers = new HttpHeaders();
-            headers = headers.append('Authorization', `bearer ${this._authServ.getToken()}`)
+            headers = headers.append('Authorization', `bearer ${this._authServ.getToken()?.token}`)
             const newRequest = request.clone({
                 headers: headers
             })
-
             return next.handle(newRequest);
         }
         return next.handle(request);
