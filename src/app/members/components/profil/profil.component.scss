@@ -1,0 +1,23 @@
+.column{
+  margin: 0 auto;
+  text-align: center;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+}
+input{
+  height: 2rem;
+  margin-top: 1rem;
+}
+main{
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+.button{
+  background-color: blue;
+  border-radius: 1rem;
+  color: white;
+}
+

@@ -53,7 +53,7 @@ export class TournamentsListComponent implements OnInit {
   private initObservables() {
     this.tournamentsList$ = this._tournamentsService.getTournamentsFromServer(
       {
-        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS,TournamentStatus.CLOSED ],
+        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS ],
       }
     ).pipe(
       tap(data => {this.tournaments = data.results
@@ -87,6 +87,10 @@ export class TournamentsListComponent implements OnInit {
       let womenOnly = this.filterByForm.get('womenOnly')?.value;
       // status.push(this.filterByForm.get('status')?.value)
       console.log(this.filterByForm.value)
+
+      if(statuses.length <= 0){
+        statuses.push(...[TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS ])
+      }
 
       this.tournamentsList$ = this._tournamentsService.getTournamentsFromServer(
         {
@@ -153,4 +157,14 @@ export class TournamentsListComponent implements OnInit {
     }
   }
 
+  deleteTournament(id:string) {
+this._tournamentsService.deleteTournamentFromServer(id).subscribe(
+  () => {
+    this._tournamentsService.getTournamentToDelete();
+  }
+);
+    this.spinner=true;
+    setInterval(()=>this.spinner=false, 1100);
+    setInterval(()=>location.reload(), 1000);
+  }
 }

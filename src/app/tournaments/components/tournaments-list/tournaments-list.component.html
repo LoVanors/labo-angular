@@ -9,38 +9,43 @@
             <div class="form-field ">
               <label class="column">
                 Nom
-              <input type="text" placeholder="Nom" formControlName="name">
+                <input type="text" placeholder="Nom" formControlName="name">
               </label>
             </div>
-            <div class="form-field">
+            <div class="form-field column">
               <p>Statuts</p>
               <div class="adjust">
                 <label>
                   WaitingForPlayers
-                  <input [checked]="isCheckedWaiting" class="end"  type="checkbox" value="WaitingForPlayers" (change)="updateStatuses($event)">
+                  <input [checked]="isCheckedWaiting" class="end" type="checkbox" value="WaitingForPlayers"
+                         (change)="updateStatuses($event)">
                 </label>
                 <label>
                   InProgress
-                  <input [checked]="isCheckedProgress" class="end" type="checkbox" value="InProgress" (change)="updateStatuses($event)">
+                  <input [checked]="isCheckedProgress" class="end" type="checkbox" value="InProgress"
+                         (change)="updateStatuses($event)">
                 </label>
                 <label>
                   Closed
-                  <input [checked]="isCheckedClosed" class="end" type="checkbox" value="Closed" (change)="updateStatuses($event)">
+                  <input [checked]="isCheckedClosed" class="end" type="checkbox" value="Closed"
+                         (change)="updateStatuses($event)">
                 </label>
               </div>
             </div>
             <div class="form-field">
-              <select formControlName="category">
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-                <option value="Veteran">Veteran</option>
-              </select>
-            </div>
-            <div class="form-field ">
-              <label class="flex">
-              <input  type="checkbox" formControlName="womenOnly">
-              Tournoi féminin
+              <label class="column">
+                Catégorie
+                <select formControlName="category">
+                  <option value="">------------</option>
+                  <option value="Junior">Junior</option>
+                  <option value="Senior">Senior</option>
+                  <option value="Veteran">Veteran</option>
+                </select>
               </label>
+            </div>
+            <div class="checkbox">
+              <input id="women" type="checkbox" formControlName="womenOnly">
+              <p>Tournoi féminin</p>
             </div>
           </div>
           <div class="form-buttons">
@@ -65,6 +70,7 @@
           <td>Inscrit</td>
           <td>Statut</td>
           <td>Manche actuelle</td>
+          <td>Actions</td>
         </tr>
         </thead>
         <tbody>
@@ -81,6 +87,21 @@
           <td>{{tournament.isRegistered ? 'inscrit' : 'pas inscrit'}}</td>
           <td>{{tournament.status}}</td>
           <td>{{tournament.currentRound}}</td>
+          <td class="">
+            <a routerLink="/tournaments/{{tournament.id}}">
+            <button class="grey" >
+              <i class="pi pi-search"></i>
+            </button>
+          </a>
+            <a routerLink="/tournaments/edit/{{tournament.id}}">
+            <button class="blue">
+              <i class="pi pi-pencil"></i>
+            </button>
+            </a>
+            <button class="red" (click)="deleteTournament(tournament.id)">
+            <i class="pi pi-trash"></i>
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>

@@ -12,8 +12,13 @@ export class HomeComponent implements OnInit {
 
   connectedUser ?: UserDTO;
 
-  constructor(private _authServ: AuthService,
-              private _router: Router) { }
+  constructor(private _authServ: AuthService) {
+    if (this._authServ.getToken()) {
+      this.connectedUser = this._authServ.getToken()?.user;
+    } else {
+      this.connectedUser = undefined;
+    }
+  }
 
   ngOnInit(): void {
     if (this._authServ.getToken()) {

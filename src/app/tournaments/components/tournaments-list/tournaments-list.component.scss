@@ -67,6 +67,10 @@ table {
   width: 200px;
 }
 
+.checkbox{
+  margin-left: 1rem;
+  display: flex;
+}
 
 /* Style pour les boutons */
 .form-buttons {
@@ -149,4 +153,15 @@ label{
 .column{
   display: flex;
   flex-direction: column;
+}
+
+p{
+ width: 250px;
+}
+
+.grey{
+  background-color: grey;
+}
+.red{
+  background-color: red;
 }

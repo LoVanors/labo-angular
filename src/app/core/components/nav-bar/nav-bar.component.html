@@ -21,10 +21,13 @@
   </div>
   <div *ngIf="connectedUser?.role!=='Admin'">
     <div>
-      <a routerLink="/home"><i class="pi pi-home"></i>Accueil</a>
+      <a (click)="showMenu()" routerLink="/home"><i class="pi pi-home"></i>Accueil</a>
     </div>
     <div>
-      <a routerLink="/tournaments"><i class="pi pi-sitemap"></i>Tournois</a>
+      <a (click)="showMenu()" routerLink="/tournaments"><i class="pi pi-sitemap"></i>Tournois</a>
+    </div>
+    <div>
+      <a (click)="showMenu()" routerLink="/members/{{connectedUser?.id}}"><i class="pi pi-user"></i>Profil</a>
     </div>
   </div>
 </nav>

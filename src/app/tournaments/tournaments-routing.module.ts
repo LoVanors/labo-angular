@@ -8,7 +8,7 @@ import {EditTournamentComponent} from "./components/edit-tournament/edit-tournam
 const routes: Routes = [
   { path : '', component : TournamentsListComponent },
   { path : 'create', component : NewTournamentComponent },
-  { path : 'edit', component : EditTournamentComponent },
+  { path : 'edit/:id', component : EditTournamentComponent },
   { path : ':id', component : SingleTournamentComponent },
 ];
 

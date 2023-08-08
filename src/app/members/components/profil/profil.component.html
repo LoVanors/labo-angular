@@ -1,0 +1,41 @@
+<main *ngIf="connectedUser">
+  <div>
+    <h3>Nom d'utilisateur :</h3>
+    <p>{{connectedUser.username}}</p>
+  </div>
+  <div>
+    <h3>Elo :</h3>
+    <p>{{connectedUser.elo}}</p>
+  </div>
+  <div>
+    <h3>Role :</h3>
+    <p>{{connectedUser.role== "Player"? "Joueur":"Admin"}}</p>
+  </div>
+  <div>
+    <h3>Tournois :</h3>
+    <h4>En cours :</h4>
+    <p></p>
+    <h4>Terminés :</h4>
+    <p></p>
+  </div>
+  <div >
+    <form [formGroup]="changePasswordForm" (ngSubmit)="setPassword()" class="column">
+      <label >
+        Ancien Mot de passe :
+    <input type="password" formControlName="oldPassword" placeholder="Ancien Mot de Passe">
+      </label>
+      <label >
+        Nouveau Mot de passe :
+    <input type="password" formControlName="newPassword" placeholder="Nouveau mot de Passe">
+    <input type="password" formControlName="newConfirmedPassword" placeholder="Répétez le Nouveau mot de passe">
+      </label>
+      <input class="button" type="submit" value="Changer mot de passe" >
+    </form>
+  </div>
+  <div>
+
+  </div>
+  <div>
+
+  </div>
+</main>

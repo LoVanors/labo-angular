@@ -4,23 +4,26 @@ import { NewMemberComponent } from './components/new-member/new-member.component
 import {MembersRoutingModule} from "./members-routing.module";
 import {SharedModule} from "primeng/api";
 import {MemberService} from "./services/member.service";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { LoginComponent } from '../login/login.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 
 @NgModule({
   declarations: [
     NewMemberComponent,
-    LoginComponent
+    LoginComponent,
+    ProfilComponent
   ],
   imports: [
     CommonModule,
     MembersRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    FormsModule
   ],
   providers: [
     MemberService
