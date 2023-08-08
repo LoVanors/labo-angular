@@ -36,7 +36,6 @@ export class TournamentService {
     if (params.womenOnly) {
       httpParams = httpParams.set('WomenOnly', params.womenOnly);
     }
-
     return this._http.get<TournamentIndexDTO>(`${environment.apiURL}/Tournament`,
       {params: httpParams});
   }

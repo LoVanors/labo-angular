@@ -1,76 +1,89 @@
 <main>
   <p-progressSpinner *ngIf="spinner"></p-progressSpinner>
   <div *ngIf="tournamentsList$ | async">
-  <div *ngIf="!spinner" class="border">
-    <button (click)="filterForm()" class="form-buttons" ><i class="pi pi-filter search"></i></button>
-    <div *ngIf="filterByFormActive" class="form-container">
-      <form class="form" [formGroup]="filterByForm" (ngSubmit)="findByFilter()">
-        <div class="flex">
+    <div *ngIf="!spinner" class="border">
+      <button (click)="filterForm()" class="form-buttons"><i class="pi pi-filter search"></i></button>
+      <div *ngIf="filterByFormActive" class="form-container">
+        <form class="form" [formGroup]="filterByForm" (ngSubmit)="findByFilter()">
+          <div class="flex">
             <div class="form-field ">
+              <label class="column">
+                Nom
               <input type="text" placeholder="Nom" formControlName="name">
+              </label>
             </div>
             <div class="form-field">
-              <select formArrayName="status">
-                <option value="" hidden>Statuts</option>
-                <option value="WAITINGFORPLAYER">WaitingForPlayers</option>
-                <option value="INPROGRESS">InProgress</option>
-                <option value="CLOSED">Closed</option>
+              <p>Statuts</p>
+              <div class="adjust">
+                <label>
+                  WaitingForPlayers
+                  <input [checked]="isCheckedWaiting" class="end"  type="checkbox" value="WaitingForPlayers" (change)="updateStatuses($event)">
+                </label>
+                <label>
+                  InProgress
+                  <input [checked]="isCheckedProgress" class="end" type="checkbox" value="InProgress" (change)="updateStatuses($event)">
+                </label>
+                <label>
+                  Closed
+                  <input [checked]="isCheckedClosed" class="end" type="checkbox" value="Closed" (change)="updateStatuses($event)">
+                </label>
+              </div>
+            </div>
+            <div class="form-field">
+              <select formControlName="category">
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Veteran">Veteran</option>
               </select>
             </div>
             <div class="form-field ">
-              <select formControlName="categories">
-                <option value="" hidden>Catégories</option>
-                <option value="JUNIOR">Junior</option>
-                <option value="SENIOR">Senior</option>
-                <option value="VETERAN">Veteran</option>
-              </select>
+              <label class="flex">
+              <input  type="checkbox" formControlName="womenOnly">
+              Tournoi féminin
+              </label>
             </div>
-            <div class="form-field flex">
-              <input id="womenOnly" type="checkbox" formControlName="womenOnly">
-              <label for="womenOnly">Tournoi féminin</label>
-            </div>
-        </div>
-        <div class="form-buttons">
-          <input type="button" class="reset" value="Reset" (click)="resetFilter()">
-          <input type="submit" value="Rechercher">
-        </div>
-      </form>
-    </div>
+          </div>
+          <div class="form-buttons">
+            <input type="button" class="reset" value="Reset" (click)="resetFilter()">
+            <input type="submit" value="Rechercher">
+          </div>
+        </form>
+      </div>
 
-    <table >
-      <thead>
-      <tr>
-        <td>Nom</td>
-        <td>Lieu</td>
-        <td>Participants</td>
-        <td>Elo</td>
-        <td>Catégorie(s)</td>
-        <td>Féminin</td>
-        <td>Fin des inscriptions</td>
-        <td>Compte</td>
-        <td>Inscriptions</td>
-        <td>Inscrit</td>
-        <td>Statut</td>
-        <td>Manche actuelle</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let tournament of tournaments ">
-        <td>{{tournament.name}}</td>
-        <td>{{tournament.location}}</td>
-        <td>{{tournament.minPlayers}} / {{tournament.maxPlayers}}</td>
-        <td>{{tournament.eloMin}} / {{tournament.eloMax}}</td>
-        <td>{{tournament.categories}}</td>
-        <td>{{tournament.womenOnly}}</td>
-        <td>{{tournament.endOfRegistrationDate | date:'dd/MM/yy'}}</td>
-        <td>{{tournament.count}}</td>
-        <td>{{tournament.canRegister ? 'ouvertes' : 'fermées'}}</td>
-        <td>{{tournament.isRegistered ? 'inscrit' : 'pas inscrit'}}</td>
-        <td>{{tournament.status}}</td>
-        <td>{{tournament.currentRound}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+      <table>
+        <thead>
+        <tr>
+          <td>Nom</td>
+          <td>Lieu</td>
+          <td>Participants</td>
+          <td>Elo</td>
+          <td>Catégorie(s)</td>
+          <td>Féminin</td>
+          <td>Fin des inscriptions</td>
+          <td>Compte</td>
+          <td>Inscriptions</td>
+          <td>Inscrit</td>
+          <td>Statut</td>
+          <td>Manche actuelle</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tournament of tournaments ">
+          <td>{{tournament.name}}</td>
+          <td>{{tournament.location}}</td>
+          <td>{{tournament.minPlayers}} / {{tournament.maxPlayers}}</td>
+          <td>{{tournament.eloMin}} / {{tournament.eloMax}}</td>
+          <td>{{tournament.categories}}</td>
+          <td>{{tournament.womenOnly}}</td>
+          <td>{{tournament.endOfRegistrationDate | date:'dd/MM/yy'}}</td>
+          <td>{{tournament.count}}</td>
+          <td>{{tournament.canRegister ? 'ouvertes' : 'fermées'}}</td>
+          <td>{{tournament.isRegistered ? 'inscrit' : 'pas inscrit'}}</td>
+          <td>{{tournament.status}}</td>
+          <td>{{tournament.currentRound}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </main>

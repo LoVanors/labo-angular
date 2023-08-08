@@ -5,7 +5,7 @@ import {TournamentIndexDTO} from "../../models/tournamentIndexDTO";
 import {TournamentDTO} from "../../models/tournamentDTO";
 import {AutoCompleteCompleteEvent} from "primeng/autocomplete";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TournamentStatus} from "../../enums/tournamentStatus";
 
 @Component({
@@ -20,16 +20,20 @@ export class TournamentsListComponent implements OnInit {
   filterByFormActive: boolean = false;
   filterByForm: FormGroup;
   spinner: boolean = false;
+  isCheckedClosed: boolean = false
+  isCheckedWaiting: boolean = false
+  isCheckedProgress: boolean = false
 
   constructor(private _tournamentsService: TournamentService,
               private _FB: FormBuilder,
               private _router: Router) {
     this.filterByForm = this._FB.group(
       {
-        name: [null],
-        categories: [null],
-        status: [null],
-        womenOnly: [null]
+        name: [],
+        category: [],
+        status: this._FB.array([
+        ]),
+        womenOnly: []
       }
     )
   }
@@ -72,33 +76,81 @@ export class TournamentsListComponent implements OnInit {
     if (this.filterByForm.valid) {
       let name = this.filterByForm.get('name')?.value;
       let category = this.filterByForm.get('category')?.value === null ? null : this.filterByForm.get('category')?.value;
-      let status = this.filterByForm.get('status')?.value;
-      let selectedStatus: string[] = [];
-      let womenOnly = this.filterByForm.get('womenOnly')?.value;
+      let statuses: string[] = []
 
-      if (status) {
-        Object.keys(status).forEach(
-          key => {
-            selectedStatus.push(status[key].name);
-          }
-        );
-      }
+      this.statusesFormArray.controls.forEach(control => {
+        if (control.value) {
+          statuses.push(control.value);
+        }
+      });
+
+      let womenOnly = this.filterByForm.get('womenOnly')?.value;
+      // status.push(this.filterByForm.get('status')?.value)
+      console.log(this.filterByForm.value)
 
       this.tournamentsList$ = this._tournamentsService.getTournamentsFromServer(
         {
           name,
           category,
-          status: selectedStatus,
+          status: statuses,
           womenOnly
         }
       ).pipe(
-        tap(data =>{ this.tournaments = data.results
-          this.spinner=true}),
+        tap(data =>{
+          this.tournaments = data.results
+          this.spinner=true
+          let existingValue: string[] = []
+          this.isCheckedClosed = false
+          this.isCheckedProgress = false
+          this.isCheckedWaiting = false
+
+          let test = this.filterByForm.get('status')?.value
+          console.log(test)
+
+
+
+          if(test.length > 0){
+            console.log("ici")
+            existingValue = this.filterByForm.get('status')?.value
+            const statusesFormArray = this.filterByForm.get('status') as FormArray;
+
+            statusesFormArray.controls.forEach(control => {
+              const value = control.value;
+              console.log(value)
+              if (existingValue.includes("Closed")) {
+                this.isCheckedClosed = true // Cocher la case si la valeur existe dans le tableau existingStatusValues
+              }
+              if(existingValue.includes("WaitingForPlayers")){
+                this.isCheckedWaiting = true
+              }
+              if(existingValue.includes("InProgress")){
+                this.isCheckedProgress = true
+              }
+            });
+
+          }
+
+        }),
         delay(1000),
         tap(() => this.spinner=false)
       )
     }
   }
 
+  get statusesFormArray(): FormArray {
+    return this.filterByForm.get('status') as FormArray;
+  }
+
+  updateStatuses(event: any) {
+    const value = event.target.value;
+    if (event.target.checked) {
+      this.statusesFormArray.push(this._FB.control(value));
+    } else {
+      const index = this.statusesFormArray.value.indexOf(value);
+      if (index >= 0) {
+        this.statusesFormArray.removeAt(index);
+      }
+    }
+  }
 
 }

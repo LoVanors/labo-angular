@@ -127,7 +127,7 @@ button:active {
 }
 
 .flex {
-  display: inline-flex;
+  display: flex;
 }
 
 .border{
@@ -137,5 +137,16 @@ button:active {
 }
 
 label{
-  width: 200px;
+  display: flex;
+  width: 250px;
+}
+
+.adjust {
+  align-content:start;
+  justify-items: start;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
 }
