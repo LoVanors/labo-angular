@@ -98,7 +98,11 @@
               <i class="pi pi-pencil"></i>
             </button>
             </a>
-            <button class="red" (click)="deleteTournament(tournament.id)">
+            <div *ngIf="connectedUser">
+            <button class="green" *ngIf="!tournament.isRegistered" (click)="sub(tournament.id,connectedUser.id)"><i class="pi pi-sign-in"></i></button>
+            <button class="orange" *ngIf="tournament.isRegistered"><i class="pi pi-sign-out"></i></button>
+            </div>
+            <button *ngIf="connectedUser?.role==='Admin'" class="red" (click)="deleteTournament(tournament.id)">
             <i class="pi pi-trash"></i>
             </button>
           </td>

@@ -37,4 +37,32 @@ export class NewMemberComponent {
       ).subscribe();
     }
   }
+
+  checkUsername() {
+const username = this.newMemberForm.get('username')?.value;
+
+if (username){
+  this._memberServ.checkUsernameExists(username).subscribe(usernameExists => {
+    if (usernameExists){
+      this.newMemberForm.get('username')?.setErrors({ usernameExists: true});
+    }else {
+      this.newMemberForm.get('username')?.setErrors(null);
+    }
+  })
+}
+  }
+
+  checkEmail() {
+    const email = this.newMemberForm.get('email')?.value;
+
+    if (email){
+this._memberServ.checkEmailExists(email).subscribe(emailExists=> {
+  if (emailExists){
+    this.newMemberForm.get('email')?.setErrors({emailExists:true});
+  }else {
+    this.newMemberForm.get('email')?.setErrors(null);
+  }
+})
+    }
+  }
 }

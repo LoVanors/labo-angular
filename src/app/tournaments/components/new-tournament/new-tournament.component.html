@@ -4,29 +4,36 @@
     <div>
       <p>Nom du tournoi</p>
       <input class="input" type="text" placeholder="Nom de tournoi" formControlName="name">
+      <span class="error" *ngIf="newTournamentForm.get('name')?.touched && newTournamentForm.get('name')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div>
       <p>Lieu du tournoi</p>
       <input class="input" type="text" placeholder="Lieu du tournoi" formControlName="location">
+      <span class="error" *ngIf="newTournamentForm.get('location')?.touched && newTournamentForm.get('location')?.errors?.['required']">Ce champ est requis</span>
+
     </div>
     <div>
       <p>Nombre minimum de joueurs</p>
       <input class="input" type="number" placeholder="Nombre minimum de joueurs" formControlName="minPlayers" >
+      <span class="error" *ngIf="newTournamentForm.get('minPlayers')?.touched && newTournamentForm.get('minPlayers')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div>
       <p>Nombre maximum de joueurs</p>
       <input class="input" type="number" placeholder="Nombre maximum de joueurs" formControlName="maxPlayers">
+      <span class="error" *ngIf="newTournamentForm.get('maxPlayers')?.touched && newTournamentForm.get('maxPlayers')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div>
       <p>Elo minimum requis</p>
       <input class="input" type="number" placeholder="Elo minimum" formControlName="eloMin">
+      <span class="error" *ngIf="newTournamentForm.get('eloMin')?.touched && newTournamentForm.get('eloMin')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div>
       <p>Elo maximum accepté</p>
       <input class="input" type="number" placeholder="Elo maximum" formControlName="eloMax">
+      <span class="error" *ngIf="newTournamentForm.get('eloMax')?.touched && newTournamentForm.get('eloMax')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div >
-      <p>Catégories</p>
+      <p>Catégories (minimum 1)</p>
       <div class="adjust">
       <label >
       <input type="checkbox"  value="Junior" (change)="updateCategories($event)">
@@ -40,6 +47,7 @@
       <input type="checkbox"  value="Veteran" (change)="updateCategories($event)">
         Vétéran
       </label>
+        <span class="error" *ngIf="newTournamentForm.get('categories')?.touched && newTournamentForm.get('categories')?.errors?.['required']">Ce champ est requis</span>
       </div>
     </div>
     <div>
@@ -51,6 +59,7 @@
     <div>
       <p>Date finale des inscriptions</p>
       <input class="input" type="date" formControlName="endOfRegistrationDate">
+      <span class="error" *ngIf="newTournamentForm.get('endOfRegistrationDate')?.touched && newTournamentForm.get('endOfRegistrationDate')?.errors?.['required']">Ce champ est requis</span>
     </div>
     <div>
       <input type="submit" class="button" value="Créer tournoi">

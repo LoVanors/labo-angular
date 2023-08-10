@@ -3,19 +3,27 @@
     <form class="card" [formGroup]="newMemberForm" (ngSubmit)="addNewMember()">
       <div>
         <p>Nom d'utilisateur</p>
-        <input type="text" placeholder="Nom d'utilisateur" formControlName="username">
+        <input type="text" placeholder="Nom d'utilisateur" formControlName="username" (blur)="checkUsername()">
+        <span class="error" *ngIf="newMemberForm.get('username')?.touched && newMemberForm.get('username')?.errors?.['required']">Ce champ est requis</span>
+        <span *ngIf="newMemberForm.get('username')?.hasError('usernameExists')" class="error">Nom d'utilisateur déjà utilisé.</span>
       </div>
       <div>
         <p>Adresse Email</p>
-        <input type="email" placeholder="Adesse mail" formControlName="email">
+        <input type="email" placeholder="Adesse mail" formControlName="email" [ngClass]="{'error-input': newMemberForm.get('email')?.errors?.['email']}"
+               (blur)="newMemberForm.get('email')?.valid && checkEmail()">
+        <span class="error" *ngIf="newMemberForm.get('email')?.hasError('email')">Adresse mail non valide</span>
+        <span class="error" *ngIf="newMemberForm.get('email')?.touched && newMemberForm.get('email')?.errors?.['required']">Ce champ est requis</span>
+        <span *ngIf="newMemberForm.get('email')?.hasError('emailExists')" class="error">Adresse mail déjà utilisée.</span>
       </div>
       <div>
         <p>Date de naissance</p>
         <input type="date" formControlName="birthDate">
+        <span class="error" *ngIf="newMemberForm.get('birthDate')?.touched && newMemberForm.get('birthDate')?.errors?.['required']">Ce champ est requis</span>
       </div>
       <div>
         <p>Elo actuel</p>
         <input type="number" placeholder="elo actuel" formControlName="elo">
+        <span class="error" *ngIf="newMemberForm.get('elo')?.touched && newMemberForm.get('elo')?.errors?.['required']">Ce champ est requis</span>
       </div>
       <div>
         <p>Genre</p>
@@ -25,6 +33,7 @@
           <option value="FEMALE">Femme</option>
           <option value="OTHER">Autre</option>
         </select>
+        <span class="error" *ngIf="newMemberForm.get('gender')?.touched && newMemberForm.get('gender')?.errors?.['required']">Ce champ est requis</span>
       </div>
       <div>
         <input class="button" type="submit" (click)="addNewMember()">

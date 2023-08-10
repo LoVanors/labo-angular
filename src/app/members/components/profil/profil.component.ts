@@ -5,6 +5,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MemberService} from "../../services/member.service";
 import {ChangePasswordDTO} from "../../../core/models/changePasswordDTO";
 import {passwordMatchValidator} from "../../../shared/validators/passwordMatchValidator";
+import {TournamentService} from "../../../tournaments/services/tournament.service";
+import {TournamentDTO} from "../../../tournaments/models/tournamentDTO";
+import {TournamentStatus} from "../../../tournaments/enums/tournamentStatus";
+import {Observable, tap} from "rxjs";
+import {TournamentIndexDTO} from "../../../tournaments/models/tournamentIndexDTO";
 
 @Component({
   selector: 'app-profil',
@@ -16,9 +21,14 @@ export class ProfilComponent implements OnInit {
   changePasswordForm: FormGroup;
   newPass!: ChangePasswordDTO;
 
+  tournaments!: TournamentDTO[] | null;
+
+  private tournamentsList$: Observable<TournamentIndexDTO>;
+
   constructor(private _authServ: AuthService,
               private _FB: FormBuilder,
-              private _memberServ: MemberService) {
+              private _memberServ: MemberService,
+              private _tournamentServ: TournamentService) {
     this.changePasswordForm = this._FB.group(
       {
         oldPassword: [null, [Validators.required]],
@@ -29,6 +39,15 @@ export class ProfilComponent implements OnInit {
         validators: passwordMatchValidator()
       }
     )
+
+    this.tournamentsList$ = this._tournamentServ.getTournamentsFromServer(
+      {
+        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS, TournamentStatus.CLOSED ],
+      }
+    ).pipe(
+      tap(data => {this.tournaments = data.results
+        console.log(data.results)})
+    );
   }
 
   ngOnInit(): void {
@@ -37,6 +56,15 @@ export class ProfilComponent implements OnInit {
     } else {
       this.connectedUser = undefined;
     }
+
+    this.tournamentsList$ = this._tournamentServ.getTournamentsFromServer(
+      {
+        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS, TournamentStatus.CLOSED ],
+      }
+    ).pipe(
+      tap(data => {this.tournaments = data.results
+        console.log(data.results)})
+    );
   }
 
   setPassword() {

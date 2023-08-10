@@ -14,7 +14,11 @@
   <div>
     <h3>Tournois :</h3>
     <h4>En cours :</h4>
-    <p></p>
+    <ul>
+      <li *ngFor="let tournament of tournaments">
+        <p *ngIf="tournament.isRegistered">{{tournament.name}}</p>
+      </li>
+    </ul>
     <h4>Terminés :</h4>
     <p></p>
   </div>

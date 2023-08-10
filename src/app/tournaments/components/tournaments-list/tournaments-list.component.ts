@@ -7,6 +7,9 @@ import {AutoCompleteCompleteEvent} from "primeng/autocomplete";
 import {Router} from "@angular/router";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TournamentStatus} from "../../enums/tournamentStatus";
+import {UserDTO} from "../../../members/models/userDTO";
+import {AuthService} from "../../../core/services/auth.service";
+import {TournamentInscriptionService} from "../../services/tournament-inscription.service";
 
 @Component({
   selector: 'app-tournaments-list',
@@ -24,9 +27,12 @@ export class TournamentsListComponent implements OnInit {
   isCheckedWaiting: boolean = false
   isCheckedProgress: boolean = false
 
+  connectedUser ?: UserDTO;
+
   constructor(private _tournamentsService: TournamentService,
               private _FB: FormBuilder,
-              private _router: Router) {
+              private _TIServ: TournamentInscriptionService,
+              private _authServ: AuthService) {
     this.filterByForm = this._FB.group(
       {
         name: [],
@@ -36,6 +42,12 @@ export class TournamentsListComponent implements OnInit {
         womenOnly: []
       }
     )
+
+    if (this._authServ.getToken()) {
+      this.connectedUser = this._authServ.getToken()?.user;
+    } else {
+      this.connectedUser = undefined;
+    }
   }
 
   ngOnInit(): void {
@@ -166,5 +178,9 @@ this._tournamentsService.deleteTournamentFromServer(id).subscribe(
     this.spinner=true;
     setInterval(()=>this.spinner=false, 1100);
     setInterval(()=>location.reload(), 1000);
+  }
+
+  sub(id:string, userId: string){
+    this._TIServ.subscribeToTournament(id,userId).subscribe();
   }
 }

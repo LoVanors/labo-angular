@@ -12,8 +12,7 @@ import {TournamentDTO} from "../models/tournamentDTO";
 })
 export class TournamentService {
 
-  constructor(private _http: HttpClient,
-              private _authServ: AuthService) {
+  constructor(private _http: HttpClient) {
   }
 
   private _tournaments$ = new BehaviorSubject<TournamentIndexDTO[]>([]);

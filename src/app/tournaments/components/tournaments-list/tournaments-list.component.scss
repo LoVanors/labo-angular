@@ -4,8 +4,7 @@ main {
   flex-direction: column;
   justify-content: center; /* Centrer horizontalement */
   align-items: center; /* Centrer verticalement */
-  height: 87.5vh; /* Ajuster la hauteur du conteneur principal */
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
 /* Style optionnel pour ajuster la largeur du tableau */
@@ -15,7 +14,7 @@ div {
 
 table {
   justify-content: space-evenly;
-  width: 1330px;
+  width: 800px;
 
   thead {
     background-color: #929283;
@@ -156,7 +155,7 @@ label{
 }
 
 p{
- width: 250px;
+  width: 250px;
 }
 
 .grey{
@@ -164,4 +163,10 @@ p{
 }
 .red{
   background-color: red;
+}
+.orange{
+  background-color: orange;
+}
+.green{
+  background-color: green;
 }
