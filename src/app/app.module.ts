@@ -12,6 +12,7 @@ import {MembersModule} from "./members/members.module";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     CoreModule,
     TournamentsModule,
     MembersModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

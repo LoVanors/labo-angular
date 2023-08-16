@@ -1,16 +1,25 @@
 <main>
-    <div class="card-container">
-        <form class="card" [formGroup]="loginForm" (ngSubmit)="login()">
-            <div class="input">
-                <input type="text" placeholder="Nom d'utilisateur" formControlName="username">
-                <span class="error" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']">Ce champ est requis</span>
-            </div>
-            <div class="input">
-                <input type="password" placeholder="Mot de passe" formControlName="password">
-                <span class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">Ce champ est requis</span>
-            </div>
-            <input class="button" type="submit" value="Se connecter">
-        </form>
-    </div>
+  <!-- Conteneur de carte pour le formulaire de connexion -->
+  <div class="card-container">
+    <!-- Formulaire de connexion -->
+    <form class="card" [formGroup]="loginForm" (ngSubmit)="login()">
+      <!-- Champ d'entrée pour le nom d'utilisateur -->
+      <div class="input">
+        <input type="text" placeholder="Nom d'utilisateur" formControlName="username">
+        <!-- Message d'erreur affiché si le champ est touché et est requis -->
+        <span class="error" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']">Ce champ est requis</span>
+      </div>
+      <!-- Champ d'entrée pour le mot de passe -->
+      <div class="input">
+        <input type="password" placeholder="Mot de passe" formControlName="password">
+        <!-- Message d'erreur affiché si le champ est touché et est requis -->
+        <span class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">Ce champ est requis</span>
+      </div>
+      <!-- Bouton de soumission du formulaire -->
+      <input class="button" type="submit" value="Se connecter">
+    </form>
+  </div>
+
+  <!-- Message d'erreur affiché si connectionInfo est falsy -->
   <span *ngIf="!connectionInfo" class="error">Nom d'utilisateur ou mot de passe invalide</span>
 </main>

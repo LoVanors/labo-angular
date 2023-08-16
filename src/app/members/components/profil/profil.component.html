@@ -1,45 +1,31 @@
-<main *ngIf="connectedUser">
+<main *ngIf="connectedUser"> <!-- Affiche le contenu uniquement si l'utilisateur est connecté -->
   <div>
     <h3>Nom d'utilisateur :</h3>
-    <p>{{connectedUser.username}}</p>
+    <p>{{connectedUser.username}}</p> <!-- Affiche le nom d'utilisateur de l'utilisateur connecté -->
   </div>
   <div>
     <h3>Elo :</h3>
-    <p>{{connectedUser.elo}}</p>
+    <p>{{connectedUser.elo}}</p> <!-- Affiche l'Elo de l'utilisateur connecté -->
   </div>
   <div>
     <h3>Role :</h3>
-    <p>{{connectedUser.role== "Player"? "Joueur":"Admin"}}</p>
+    <p>{{connectedUser.role == "Player" ? "Joueur" : "Admin"}}</p>
+    <!-- Affiche le rôle de l'utilisateur connecté en tant que "Joueur" s'il est joueur, sinon "Admin" -->
   </div>
   <div>
-    <h3>Tournois :</h3>
-    <h4>En cours :</h4>
-    <ul>
-      <li *ngFor="let tournament of tournaments">
-        <p *ngIf="tournament.isRegistered">{{tournament.name}}</p>
-      </li>
-    </ul>
-    <h4>Terminés :</h4>
-    <p></p>
-  </div>
-  <div >
     <form [formGroup]="changePasswordForm" (ngSubmit)="setPassword()" class="column">
-      <label >
+      <!-- Formulaire pour changer le mot de passe -->
+      <label>
         Ancien Mot de passe :
-    <input type="password" formControlName="oldPassword" placeholder="Ancien Mot de Passe">
+        <input type="password" formControlName="oldPassword" placeholder="Ancien Mot de Passe">
       </label>
-      <label >
+      <label>
         Nouveau Mot de passe :
-    <input type="password" formControlName="newPassword" placeholder="Nouveau mot de Passe">
-    <input type="password" formControlName="newConfirmedPassword" placeholder="Répétez le Nouveau mot de passe">
+        <input type="password" formControlName="newPassword" placeholder="Nouveau mot de Passe">
+        <input type="password" formControlName="newConfirmedPassword" placeholder="Répétez le Nouveau mot de passe">
       </label>
-      <input class="button" type="submit" value="Changer mot de passe" >
+      <input class="button" type="submit" value="Changer mot de passe">
+      <!-- Bouton pour soumettre le formulaire de changement de mot de passe -->
     </form>
-  </div>
-  <div>
-
-  </div>
-  <div>
-
   </div>
 </main>

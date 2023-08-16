@@ -1,33 +1,55 @@
-
+<!-- Navigation affichée si la variable 'menu' est vraie -->
 <nav *ngIf="menu">
+  <!-- Bloc de navigation pour l'utilisateur de rôle 'Admin' -->
   <div *ngIf="connectedUser?.role==='Admin'">
+    <!-- Liste d'éléments -->
     <ul>
       <li>
-        <a routerLink="/home" (click)="showMenu()"><i class="pi pi-home"></i> Accueil</a>
+        <!-- Lien vers la page d'accueil avec une icône -->
+        <a routerLink="/home" (click)="showMenu()">
+          <i class="pi pi-home"></i> Accueil
+        </a>
       </li>
     </ul>
+    <!-- Liste d'éléments générée à partir d'un tableau 'items' -->
     <ul *ngFor="let item of items">
-    <li>
-      <a [ngClass]="{isActive:item.showChildren}" [routerLink]="item.url" (click)="toggleChildren(item)"><i class="{{item.icon}}" ></i> {{item.label}}</a>
-      <div *ngIf="item.children && item.showChildren">
-        <ul *ngFor="let children of item.children">
-          <li (click)="showMenu()">
-            <a [routerLink]="children.url" ><i class="{{children.icon}}" ></i> {{children.label}}</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
+      <li>
+        <!-- Lien avec possibilité d'ajouter une classe CSS si 'showChildren' est vrai -->
+        <a [ngClass]="{isActive:item.showChildren}" [routerLink]="item.url" (click)="toggleChildren(item)">
+          <i class="{{item.icon}}"></i> {{item.label}}
+        </a>
+        <!-- Bloc de contenu affiché si 'item.children' existe et 'item.showChildren' est vrai -->
+        <div *ngIf="item.children && item.showChildren">
+          <!-- Liste d'éléments enfants -->
+          <ul *ngFor="let children of item.children">
+            <li (click)="showMenu()">
+              <!-- Lien vers les pages des éléments enfants avec des icônes -->
+              <a [routerLink]="children.url">
+                <i class="{{children.icon}}"></i> {{children.label}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
+  <!-- Bloc de navigation pour les utilisateurs autres qu'Admin -->
   <div *ngIf="connectedUser?.role!=='Admin'">
+    <!-- Liens vers différentes pages -->
     <div>
-      <a (click)="showMenu()" routerLink="/home"><i class="pi pi-home"></i>Accueil</a>
+      <a (click)="showMenu()" routerLink="/home">
+        <i class="pi pi-home"></i> Accueil
+      </a>
     </div>
     <div>
-      <a (click)="showMenu()" routerLink="/tournaments"><i class="pi pi-sitemap"></i>Tournois</a>
+      <a (click)="showMenu()" routerLink="/tournaments">
+        <i class="pi pi-sitemap"></i> Tournois
+      </a>
     </div>
     <div>
-      <a (click)="showMenu()" routerLink="/members/{{connectedUser?.id}}"><i class="pi pi-user"></i>Profil</a>
+      <a (click)="showMenu()" routerLink="/members/{{connectedUser?.id}}">
+        <i class="pi pi-user"></i> Profil
+      </a>
     </div>
   </div>
 </nav>

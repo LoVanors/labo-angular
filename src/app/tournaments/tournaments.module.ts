@@ -15,6 +15,11 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import {DropdownModule} from "primeng/dropdown";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "../core/interceptors/jwt.interceptor";
+import {ButtonModule} from "primeng/button";
+import {CardModule} from "primeng/card";
+import {TableModule} from "primeng/table";
+import {PanelModule} from "primeng/panel";
+import {StepsModule} from "primeng/steps";
 
 
 
@@ -33,7 +38,12 @@ import {JwtInterceptor} from "../core/interceptors/jwt.interceptor";
     ProgressSpinnerModule,
     FormsModule,
     AutoCompleteModule,
-    DropdownModule
+    DropdownModule,
+    ButtonModule,
+    CardModule,
+    TableModule,
+    PanelModule,
+    StepsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

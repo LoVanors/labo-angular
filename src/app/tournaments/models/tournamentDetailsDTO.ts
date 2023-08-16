@@ -17,7 +17,7 @@ export interface TournamentDetailsDTO{
   count: number;
   canRegister: boolean;
   isRegistered: boolean;
-  status: TournamentStatus[];
+  status: TournamentStatus;
   currentRound: number;
   players: UserDTO[]|null;
   canStart: boolean;

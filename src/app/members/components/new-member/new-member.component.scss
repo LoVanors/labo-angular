@@ -1,3 +1,4 @@
+/* Stylisation de la section principale */
 main {
   display: flex;
   justify-content: center;
@@ -5,11 +6,13 @@ main {
   height: 100vh;
 }
 
-.error{
+/* Stylisation pour les messages d'erreur */
+.error {
   color: darkred;
   font-size: 12px;
 }
 
+/* Stylisation pour les boutons */
 .button {
   padding: 0.5rem 0.5rem;
   border-radius: 15px;
@@ -20,14 +23,17 @@ main {
   transition: transform 0.1s ease;
 }
 
+/* Effet de survol sur les boutons */
 .button:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
+/* Effet lorsqu'un bouton est enfoncé */
 .button:active {
   transform: translateY(-3px) scale(0.95);
 }
 
+/* Stylisation du conteneur de cartes */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -35,6 +41,7 @@ main {
   margin-top: 4rem;
 }
 
+/* Stylisation des cartes */
 .card {
   width: 400px;
   background-color: goldenrod;
@@ -47,16 +54,19 @@ main {
   margin: 1rem;
 }
 
+/* Stylisation des champs de saisie */
 input {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Alignement du texte à gauche dans les cartes */
 .card p {
   text-align: left;
 }
 
+/* Stylisation des champs de saisie dans les cartes */
 .card input,
 .card select {
   width: 200px;

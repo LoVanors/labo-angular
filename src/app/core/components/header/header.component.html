@@ -1,24 +1,33 @@
 <header>
+  <!-- Si un utilisateur est connecté -->
   <div *ngIf="connectedUser">
-  <div *ngIf="!menu">
-  <a type="button" (click)="showMenu()" >
-    <i class="pi pi-caret-down menu-button" ></i>
-  </a>
+    <!-- Si le menu n'est pas affiché -->
+    <div *ngIf="!menu">
+      <!-- Bouton pour afficher le menu -->
+      <a type="button" (click)="showMenu()">
+        <i class="pi pi-caret-down menu-button"></i>
+      </a>
+    </div>
+    <!-- Si le menu est affiché -->
+    <div *ngIf="menu">
+      <!-- Bouton pour masquer le menu -->
+      <a type="button" (click)="showMenu()">
+        <i class="pi pi-caret-up menu-button"></i>
+      </a>
+    </div>
   </div>
-  <div *ngIf="menu">
-  <a type="button" (click)="showMenu()" >
-    <i class="pi pi-caret-up menu-button" ></i>
-  </a>
-  </div>
-  </div>
+  <!-- Bouton pour accéder à la page d'accueil des tournois (si l'utilisateur n'est pas connecté) -->
   <a type="button" *ngIf="!connectedUser" routerLink="/tournaments">
-    <i class="pi pi-home menu-button" ></i>
+    <i class="pi pi-home menu-button"></i>
   </a>
+  <!-- Titre de l'application -->
   <h1>Gestion Tournoi</h1>
+  <!-- Bouton pour accéder à la page de connexion (si l'utilisateur n'est pas connecté) -->
   <a type="button" routerLink="login">
-    <i *ngIf="!localStorage.getItem('token')"  label="Show" class="pi pi-sign-in sign-button" ></i>
+    <i *ngIf="!localStorage.getItem('token')" class="pi pi-sign-in sign-button"></i>
   </a>
+  <!-- Bouton pour se déconnecter (si l'utilisateur est connecté) -->
   <a type="button" (click)="logOut()">
-    <i *ngIf="localStorage.getItem('token')" class="pi pi-sign-out sign-button" ></i>
+    <i *ngIf="localStorage.getItem('token')" class="pi pi-sign-out sign-button"></i>
   </a>
 </header>

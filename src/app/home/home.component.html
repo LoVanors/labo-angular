@@ -1,8 +1,13 @@
 <main>
-    <div *ngIf="!connectedUser">
+  <!-- Affiche le contenu à l'intérieur de cette div si l'utilisateur n'est pas connecté -->
+  <div *ngIf="!connectedUser">
+    <!-- Affiche un composant p-progressSpinner (supposons que c'est un composant de PrimeNG pour afficher un spinner de progression) -->
     <p-progressSpinner></p-progressSpinner>
-    </div>
-    <div *ngIf="connectedUser">
+  </div>
+
+  <!-- Affiche le contenu à l'intérieur de cette div si l'utilisateur est connecté -->
+  <div *ngIf="connectedUser">
+    <!-- Affiche un titre de niveau 2 (h2) pour accueillir l'utilisateur connecté -->
     <h2>Bienvenue {{connectedUser.username}}</h2>
-    </div>
+  </div>
 </main>

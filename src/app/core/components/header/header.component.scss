@@ -1,30 +1,33 @@
-a{
-  color: white;
+/* Style pour tous les liens <a> dans la page */
+a {
+  color: white; /* Définit la couleur du texte des liens en blanc */
 }
 
-header{
-  user-select: none;
-  height: 5vh;
-  padding: 20px;
-  background-color: #65655b;
-  border-bottom: 1px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-
-}
-.menu-button{
-  position: absolute;
-  left: 2rem;
-  top: 1.5rem;
-  font-size: 3rem;
+/* Style pour l'élément <header> */
+header {
+  user-select: none; /* Empêche la sélection de texte par l'utilisateur */
+  height: 5vh; /* Hauteur de 5 % de la hauteur de la vue (viewport) */
+  padding: 3rem; /* Espacement intérieur de 3 rem (unité relative) autour du contenu de l'en-tête */
+  background-color: #65655b; /* Couleur de fond gris-vert */
+  border-bottom: 1px solid white; /* Bordure inférieure de 1 pixel de couleur blanche */
+  display: flex; /* Utilise le modèle de boîte flexible pour aligner les éléments horizontalement */
+  justify-content: center; /* Centre horizontalement le contenu dans l'en-tête */
+  align-items: center; /* Centre verticalement le contenu dans l'en-tête */
+  color: white; /* Couleur du texte en blanc */
 }
 
+/* Style pour les boutons de menu */
+.menu-button {
+  position: absolute; /* Positionnement absolu par rapport à l'élément parent */
+  left: 2rem; /* Décalage de 2 rem (unité relative) depuis la gauche */
+  top: 1.5rem; /* Décalage de 1.5 rem depuis le haut */
+  font-size: 3rem; /* Taille de police de 3 rem */
+}
 
-.sign-button{
-  position: absolute;
-  right: 2rem;
-  top: 1.5rem;
-  font-size: 3rem;
+/* Style pour les boutons de connexion et de déconnexion */
+.sign-button {
+  position: absolute; /* Positionnement absolu par rapport à l'élément parent */
+  right: 2rem; /* Décalage de 2 rem depuis la droite */
+  top: 1.5rem; /* Décalage de 1.5 rem depuis le haut */
+  font-size: 3rem; /* Taille de police de 3 rem */
 }

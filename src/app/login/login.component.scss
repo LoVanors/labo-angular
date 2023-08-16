@@ -1,7 +1,9 @@
-a{
-color: white;
+/* Style pour les liens (ancre) */
+a {
+  color: white;
 }
 
+/* Style pour les éléments de formulaire de type "input" */
 input {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -9,12 +11,14 @@ input {
   text-align: center;
 }
 
+/* Style pour la section principale du contenu */
 main {
   height: 87.5vh;
   justify-content: center;
-  text-align: center
+  text-align: center;
 }
 
+/* Style pour les boutons */
 .button {
   padding: 0.5rem 0.5rem;
   border-radius: 15px;
@@ -25,24 +29,29 @@ main {
   transition: transform 0.1s ease;
 }
 
+/* Effet de survol pour les boutons */
 .button:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
+/* Effet d'appui pour les boutons */
 .button:active {
   transform: translateY(-3px) scale(0.95);
 }
 
-.error{
+/* Style pour les messages d'erreur */
+.error {
   color: darkred;
   font-size: 12px;
 }
 
-.input{
+/* Style pour les conteneurs d'entrées de formulaire */
+.input {
   display: flex;
   flex-direction: column;
 }
 
+/* Style pour les conteneurs de cartes */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -50,9 +59,9 @@ main {
   text-align: center;
   position: relative;
   margin-top: 4rem;
-
 }
 
+/* Style pour les cartes */
 .card {
   height: 195px;
   width: 275px;
@@ -64,6 +73,4 @@ main {
   align-items: center;
   position: relative;
   padding: 1rem;
-
 }
-

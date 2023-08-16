@@ -11,72 +11,84 @@ import {UserRole} from "../../../members/enums/userRole";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit{
-   menu!:boolean;
-   items!:Link[];
-   connectedUser?: UserDTO;
-   role?:string;
+  menu!: boolean;
+  items!: Link[]; // Tableau d'objets Link pour stocker les éléments de menu
+  connectedUser?: UserDTO;
+  role?: string;
 
-  constructor(private _menuServ:MenuService,
-              private _authServ:AuthService) {
-    if(this._authServ.getToken()){
-    this.connectedUser = this._authServ.getToken()?.user;
-    this.role = this.connectedUser?.role;
-  }else{
-      this.connectedUser=undefined;
-      this.role=undefined;
+  constructor(
+    private _menuServ: MenuService, // Injecte le service MenuService
+    private _authServ: AuthService // Injecte le service AuthService
+  ) {
+    // Vérifie si un token d'authentification existe
+    if (this._authServ.getToken()) {
+      // Si un token existe, extrait les informations de l'utilisateur à partir du token
+      this.connectedUser = this._authServ.getToken()?.user;
+      this.role = this.connectedUser?.role;
+    } else {
+      // Si aucun token n'existe, indique que l'utilisateur n'est pas connecté
+      this.connectedUser = undefined;
+      this.role = undefined;
     }
-    this._menuServ.menuSub$.subscribe( result => this.menu=result);
+    // Souscrit aux modifications de l'état du menu
+    this._menuServ.menuSub$.subscribe(result => this.menu = result);
   }
 
   ngOnInit(): void {
-    if(this._authServ.getToken()){
+    // Vérifie si un token d'authentification existe
+    if (this._authServ.getToken()) {
+      // Si un token existe, extrait les informations de l'utilisateur à partir du token
       this.connectedUser = this._authServ.getToken()?.user;
       this.role = this.connectedUser?.role;
-    }else{
-      this.connectedUser=undefined;
-      this.role=undefined;
+    } else {
+      // Si aucun token n'existe, indique que l'utilisateur n'est pas connecté
+      this.connectedUser = undefined;
+      this.role = undefined;
     }
-    this.items=[
+
+    // Initialise le tableau 'items' avec les éléments de menu
+    this.items = [
       {
         label: 'Tournois',
-        icon:'pi pi-sitemap',
-        children:[
+        icon: 'pi pi-sitemap',
+        children: [
           {
             label: 'Liste des Tournois',
             icon: 'pi pi-sitemap',
-            url:'/tournaments',
+            url: '/tournaments',
           },
           {
-            label: 'Nouverau Tournoi',
+            label: 'Nouveau Tournoi',
             icon: 'pi pi-plus',
-            url:'/tournaments/create',
+            url: '/tournaments/create',
           },
         ],
         showChildren: false,
       },
       {
         label: 'Members',
-        icon:'pi pi-users',
-        children:[
+        icon: 'pi pi-users',
+        children: [
           {
             label: 'Nouveau Membre',
             icon: 'pi pi-user-plus',
-            url: '/members/create'
-          }
+            url: '/members/create',
+          },
         ],
         showChildren: false,
-      }
-      ]
+      },
+    ];
   }
 
-  toggleChildren(link: Link):void{
+  // Méthode pour basculer l'affichage des éléments enfants du menu
+  toggleChildren(link: Link): void {
     let currentState = link.showChildren;
-    this.items.forEach(l => l.showChildren = false);
-    link.showChildren=!currentState;
+    this.items.forEach(l => (l.showChildren = false));
+    link.showChildren = !currentState;
   }
 
+  // Méthode pour afficher le menu
   showMenu() {
     this._menuServ.showMenu();
   }
-
 }

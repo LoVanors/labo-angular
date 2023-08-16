@@ -17,18 +17,20 @@ import {TournamentIndexDTO} from "../../../tournaments/models/tournamentIndexDTO
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
-  connectedUser?: UserDTO
+  connectedUser?: UserDTO;
   changePasswordForm: FormGroup;
   newPass!: ChangePasswordDTO;
-
   tournaments!: TournamentDTO[] | null;
 
   private tournamentsList$: Observable<TournamentIndexDTO>;
 
-  constructor(private _authServ: AuthService,
-              private _FB: FormBuilder,
-              private _memberServ: MemberService,
-              private _tournamentServ: TournamentService) {
+  constructor(
+    private _authServ: AuthService,
+    private _FB: FormBuilder,
+    private _memberServ: MemberService,
+    private _tournamentServ: TournamentService
+  ) {
+    // Initialisation du formulaire de changement de mot de passe
     this.changePasswordForm = this._FB.group(
       {
         oldPassword: [null, [Validators.required]],
@@ -36,37 +38,53 @@ export class ProfilComponent implements OnInit {
         newConfirmedPassword: [null, [Validators.required]]
       },
       {
-        validators: passwordMatchValidator()
+        validators: passwordMatchValidator() // Assure que les nouveaux mots de passe correspondent
       }
-    )
+    );
 
+    // Récupération de la liste des tournois avec certains statuts
     this.tournamentsList$ = this._tournamentServ.getTournamentsFromServer(
       {
-        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS, TournamentStatus.CLOSED ],
+        status: [
+          TournamentStatus.WAITINGFORPLAYERS,
+          TournamentStatus.INPROGRESS,
+          TournamentStatus.CLOSED
+        ]
       }
     ).pipe(
-      tap(data => {this.tournaments = data.results
-        console.log(data.results)})
+      tap(data => {
+        this.tournaments = data.results;
+        console.log(data.results);
+      })
     );
   }
 
   ngOnInit(): void {
+    // Récupération de l'utilisateur connecté
     if (this._authServ.getToken()) {
       this.connectedUser = this._authServ.getToken()?.user;
     } else {
       this.connectedUser = undefined;
     }
 
+    // Récupération de la liste des tournois avec certains statuts lors de l'initialisation
     this.tournamentsList$ = this._tournamentServ.getTournamentsFromServer(
       {
-        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS, TournamentStatus.CLOSED ],
+        status: [
+          TournamentStatus.WAITINGFORPLAYERS,
+          TournamentStatus.INPROGRESS,
+          TournamentStatus.CLOSED
+        ]
       }
     ).pipe(
-      tap(data => {this.tournaments = data.results
-        console.log(data.results)})
+      tap(data => {
+        this.tournaments = data.results;
+        console.log(data.results);
+      })
     );
   }
 
+  // Méthode pour définir le nouveau mot de passe
   setPassword() {
     if (this.changePasswordForm.valid) {
       const newPassChanged = this.changePasswordForm.get('newPassword')?.value;
@@ -75,8 +93,8 @@ export class ProfilComponent implements OnInit {
       this.newPass = {
         oldPassword: oldPass,
         password: newPassChanged
-      }
-      console.log(this.newPass)
+      };
+      console.log(this.newPass);
       this._memberServ.editPassword(this.newPass).subscribe();
     }
   }

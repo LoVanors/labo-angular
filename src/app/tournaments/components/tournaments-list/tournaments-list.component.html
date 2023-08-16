@@ -1,114 +1,130 @@
 <main>
+  <!-- Affiche un spinner de chargement si "spinner" est vrai -->
   <p-progressSpinner *ngIf="spinner"></p-progressSpinner>
-  <div *ngIf="tournamentsList$ | async">
-    <div *ngIf="!spinner" class="border">
-      <button (click)="filterForm()" class="form-buttons"><i class="pi pi-filter search"></i></button>
-      <div *ngIf="filterByFormActive" class="form-container">
-        <form class="form" [formGroup]="filterByForm" (ngSubmit)="findByFilter()">
-          <div class="flex">
-            <div class="form-field ">
-              <label class="column">
-                Nom
-                <input type="text" placeholder="Nom" formControlName="name">
-              </label>
-            </div>
-            <div class="form-field column">
-              <p>Statuts</p>
-              <div class="adjust">
-                <label>
-                  WaitingForPlayers
-                  <input [checked]="isCheckedWaiting" class="end" type="checkbox" value="WaitingForPlayers"
-                         (change)="updateStatuses($event)">
-                </label>
-                <label>
-                  InProgress
-                  <input [checked]="isCheckedProgress" class="end" type="checkbox" value="InProgress"
-                         (change)="updateStatuses($event)">
-                </label>
-                <label>
-                  Closed
-                  <input [checked]="isCheckedClosed" class="end" type="checkbox" value="Closed"
-                         (change)="updateStatuses($event)">
-                </label>
-              </div>
-            </div>
-            <div class="form-field">
-              <label class="column">
-                Catégorie
-                <select formControlName="category">
-                  <option value="">------------</option>
-                  <option value="Junior">Junior</option>
-                  <option value="Senior">Senior</option>
-                  <option value="Veteran">Veteran</option>
-                </select>
-              </label>
-            </div>
-            <div class="checkbox">
-              <input id="women" type="checkbox" formControlName="womenOnly">
-              <p>Tournoi féminin</p>
-            </div>
-          </div>
-          <div class="form-buttons">
-            <input type="button" class="reset" value="Reset" (click)="resetFilter()">
-            <input type="submit" value="Rechercher">
-          </div>
-        </form>
-      </div>
 
-      <table>
-        <thead>
-        <tr>
-          <td>Nom</td>
-          <td>Lieu</td>
-          <td>Participants</td>
-          <td>Elo</td>
-          <td>Catégorie(s)</td>
-          <td>Féminin</td>
-          <td>Fin des inscriptions</td>
-          <td>Compte</td>
-          <td>Inscriptions</td>
-          <td>Inscrit</td>
-          <td>Statut</td>
-          <td>Manche actuelle</td>
-          <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let tournament of tournaments ">
-          <td>{{tournament.name}}</td>
-          <td>{{tournament.location}}</td>
-          <td>{{tournament.minPlayers}} / {{tournament.maxPlayers}}</td>
-          <td>{{tournament.eloMin}} / {{tournament.eloMax}}</td>
-          <td>{{tournament.categories}}</td>
-          <td>{{tournament.womenOnly}}</td>
-          <td>{{tournament.endOfRegistrationDate | date:'dd/MM/yy'}}</td>
-          <td>{{tournament.count}}</td>
-          <td>{{tournament.canRegister ? 'ouvertes' : 'fermées'}}</td>
-          <td>{{tournament.isRegistered ? 'inscrit' : 'pas inscrit'}}</td>
-          <td>{{tournament.status}}</td>
-          <td>{{tournament.currentRound}}</td>
-          <td class="">
-            <a routerLink="/tournaments/{{tournament.id}}">
-            <button class="grey" >
+  <!-- Affiche le contenu si "tournamentsList$" est disponible -->
+
+  <div *ngIf="tournamentsList$ | async" >
+    <div *ngIf="!spinner" class="form-container">
+      <!-- Bouton pour activer/désactiver le formulaire de filtre -->
+    <button (click)="filterForm()" class="form-buttons"><i class="pi pi-filter search"></i></button>
+
+    <!-- Conteneur du formulaire de filtre -->
+    <div *ngIf="filterByFormActive" class="form-container" >
+      <form class="form" [formGroup]="filterByForm" (ngSubmit)="findByFilter()" >
+        <div class="flex">
+          <!-- Champ de saisie du nom -->
+          <div class="form-field ">
+            <label class="column">
+              Nom
+              <input type="text" placeholder="Nom" formControlName="name">
+            </label>
+          </div>
+
+          <!-- Champ de sélection des statuts -->
+          <div class="form-field column">
+            <p>Statuts</p>
+            <div class="adjust">
+              <label>
+                WaitingForPlayers
+                <input [checked]="isCheckedWaiting" class="end" type="checkbox" value="WaitingForPlayers" (change)="updateStatuses($event)">
+              </label>
+              <label>
+                InProgress
+                <input [checked]="isCheckedProgress" class="end" type="checkbox" value="InProgress" (change)="updateStatuses($event)">
+              </label>
+              <label>
+                Closed
+                <input [checked]="isCheckedClosed" class="end" type="checkbox" value="Closed" (change)="updateStatuses($event)">
+              </label>
+            </div>
+          </div>
+
+          <!-- Champ de sélection de la catégorie -->
+          <div class="form-field">
+            <label class="column">
+              Catégorie
+              <select formControlName="category">
+                <option value="">------------</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Veteran">Veteran</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Case à cocher pour le tournoi féminin -->
+          <div class="checkbox">
+            <input id="women" type="checkbox" formControlName="womenOnly">
+            <p>Tournoi féminin</p>
+          </div>
+        </div>
+
+        <!-- Boutons du formulaire -->
+        <div class="form-buttons">
+          <input type="button" class="reset" value="Reset" (click)="resetFilter()">
+          <input type="submit" value="Rechercher">
+        </div>
+      </form>
+    </div>
+
+    <!-- Tableau affichant les tournois -->
+    <table>
+      <thead>
+      <tr>
+        <td>Nom</td>
+        <td>Lieu</td>
+        <td>Participants</td>
+        <td>Elo</td>
+        <td>Catégorie(s)</td>
+        <td>Type</td>
+        <td>Fin des inscriptions</td>
+        <td>Inscrit</td>
+        <td>Statut</td>
+        <td>Manche actuelle</td>
+        <td *ngIf="connectedUser">Actions</td>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Boucle à travers les tournois pour les afficher -->
+      <tr *ngFor="let tournament of tournaments">
+        <td>{{tournament.name}}</td>
+        <td>{{tournament.location}}</td>
+        <td>{{tournament.count}} / {{tournament.maxPlayers}}</td>
+        <td>{{tournament.eloMin}} / {{tournament.eloMax}}</td>
+        <td>{{tournament.categories}}</td>
+        <td>{{tournament.womenOnly ? 'Féminin' : 'De qualité'}}</td>
+        <td>{{tournament.endOfRegistrationDate | date:'dd/MM/yy'}}</td>
+        <td>{{tournament.isRegistered ? 'inscrit' : 'pas inscrit'}}</td>
+        <td>{{tournament.status}}</td>
+        <td>{{tournament.currentRound}}</td>
+        <td *ngIf="connectedUser">
+          <!-- Boutons d'actions pour chaque tournoi -->
+          <a routerLink="/tournaments/{{tournament.id}}">
+            <button class="grey">
               <i class="pi pi-search"></i>
             </button>
           </a>
-            <a routerLink="/tournaments/edit/{{tournament.id}}">
+          <a routerLink="/tournaments/edit/{{tournament.id}}">
             <button class="blue">
               <i class="pi pi-pencil"></i>
             </button>
-            </a>
-            <div *ngIf="connectedUser">
-            <button class="green" *ngIf="!tournament.isRegistered" (click)="sub(tournament.id,connectedUser.id)"><i class="pi pi-sign-in"></i></button>
-            <button class="orange" *ngIf="tournament.isRegistered"><i class="pi pi-sign-out"></i></button>
-            </div>
-            <button *ngIf="connectedUser?.role==='Admin'" class="red" (click)="deleteTournament(tournament.id)">
-            <i class="pi pi-trash"></i>
+          </a>
+          <div *ngIf="connectedUser">
+            <button class="green" *ngIf="!tournament.isRegistered && tournament.canRegister" (click)="sub(tournament.id)">
+              <i class="pi pi-sign-in"></i>
             </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+            <button class="orange" *ngIf="tournament.isRegistered" (click)="unsub(tournament.id)">
+              <i class="pi pi-sign-out"></i>
+            </button>
+          </div>
+          <button *ngIf="connectedUser?.role==='Admin'" class="red" (click)="deleteTournament(tournament.id)">
+            <i class="pi pi-trash"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
   </div>
 </main>

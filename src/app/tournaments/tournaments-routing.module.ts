@@ -4,11 +4,12 @@ import {TournamentsListComponent} from "./components/tournaments-list/tournament
 import {SingleTournamentComponent} from "./components/single-tournament/single-tournament.component";
 import {NewTournamentComponent} from "./components/new-tournament/new-tournament.component";
 import {EditTournamentComponent} from "./components/edit-tournament/edit-tournament.component";
+import {roleGuard} from "../core/guards/role.guard";
 
 const routes: Routes = [
   { path : '', component : TournamentsListComponent },
-  { path : 'create', component : NewTournamentComponent },
-  { path : 'edit/:id', component : EditTournamentComponent },
+  { path : 'create', component : NewTournamentComponent, canActivate: [roleGuard] },
+  { path : 'edit/:id', component : EditTournamentComponent, canActivate: [roleGuard] },
   { path : ':id', component : SingleTournamentComponent },
 ];
 

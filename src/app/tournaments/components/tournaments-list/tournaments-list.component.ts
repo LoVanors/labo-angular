@@ -37,8 +37,7 @@ export class TournamentsListComponent implements OnInit {
       {
         name: [],
         category: [],
-        status: this._FB.array([
-        ]),
+        status: this._FB.array([]),
         womenOnly: []
       }
     )
@@ -65,11 +64,13 @@ export class TournamentsListComponent implements OnInit {
   private initObservables() {
     this.tournamentsList$ = this._tournamentsService.getTournamentsFromServer(
       {
-        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS ],
+        status: [TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS],
       }
     ).pipe(
-      tap(data => {this.tournaments = data.results
-      console.log(data.results)})
+      tap(data => {
+        this.tournaments = data.results
+        console.log(data.results)
+      })
     );
   }
 
@@ -79,9 +80,9 @@ export class TournamentsListComponent implements OnInit {
 
   resetFilter() {
     this.filterByForm.reset();
-    this.spinner=true;
-    setInterval(()=>this.spinner=false, 1100);
-    setInterval(()=>location.reload(), 1000);
+    this.spinner = true;
+    setInterval(() => this.spinner = false, 1100);
+    setInterval(() => location.reload(), 1000);
   }
 
   findByFilter() {
@@ -100,8 +101,8 @@ export class TournamentsListComponent implements OnInit {
       // status.push(this.filterByForm.get('status')?.value)
       console.log(this.filterByForm.value)
 
-      if(statuses.length <= 0){
-        statuses.push(...[TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS ])
+      if (statuses.length <= 0) {
+        statuses.push(...[TournamentStatus.WAITINGFORPLAYERS, TournamentStatus.INPROGRESS, TournamentStatus.CLOSED])
       }
 
       this.tournamentsList$ = this._tournamentsService.getTournamentsFromServer(
@@ -112,20 +113,17 @@ export class TournamentsListComponent implements OnInit {
           womenOnly
         }
       ).pipe(
-        tap(data =>{
+        tap(data => {
           this.tournaments = data.results
-          this.spinner=true
+          this.spinner = true
           let existingValue: string[] = []
           this.isCheckedClosed = false
           this.isCheckedProgress = false
           this.isCheckedWaiting = false
 
           let test = this.filterByForm.get('status')?.value
-          console.log(test)
 
-
-
-          if(test.length > 0){
+          if (test.length > 0) {
             console.log("ici")
             existingValue = this.filterByForm.get('status')?.value
             const statusesFormArray = this.filterByForm.get('status') as FormArray;
@@ -136,10 +134,10 @@ export class TournamentsListComponent implements OnInit {
               if (existingValue.includes("Closed")) {
                 this.isCheckedClosed = true // Cocher la case si la valeur existe dans le tableau existingStatusValues
               }
-              if(existingValue.includes("WaitingForPlayers")){
+              if (existingValue.includes("WaitingForPlayers")) {
                 this.isCheckedWaiting = true
               }
-              if(existingValue.includes("InProgress")){
+              if (existingValue.includes("InProgress")) {
                 this.isCheckedProgress = true
               }
             });
@@ -148,7 +146,10 @@ export class TournamentsListComponent implements OnInit {
 
         }),
         delay(1000),
-        tap(() => this.spinner=false)
+        tap(() => {
+          this.spinner = false
+          console.log("ici")
+        })
       )
     }
   }
@@ -169,18 +170,28 @@ export class TournamentsListComponent implements OnInit {
     }
   }
 
-  deleteTournament(id:string) {
-this._tournamentsService.deleteTournamentFromServer(id).subscribe(
-  () => {
-    this._tournamentsService.getTournamentToDelete();
-  }
-);
-    this.spinner=true;
-    setInterval(()=>this.spinner=false, 1100);
-    setInterval(()=>location.reload(), 1000);
+  deleteTournament(id: string) {
+    this._tournamentsService.deleteTournamentFromServer(id).subscribe(
+      () => {
+        this._tournamentsService.getTournamentToDelete();
+      }
+    );
+    this.spinner = true;
+    setInterval(() => this.spinner = false, 1100);
+    setInterval(() => location.reload(), 1000);
   }
 
-  sub(id:string, userId: string){
-    this._TIServ.subscribeToTournament(id,userId).subscribe();
+  sub(id: string) {
+    this._TIServ.subscribeToTournament(id).subscribe();
+    this.spinner = true;
+    setInterval(() => this.spinner = false, 1100)
+    setInterval(() => location.reload(), 1000);
+  }
+
+  unsub(id: string) {
+    this._TIServ.unsubscribeFromTournament(id).subscribe();
+    this.spinner = true;
+    setInterval(() => this.spinner = false, 1100)
+    setInterval(() => location.reload(), 1000);
   }
 }

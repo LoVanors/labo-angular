@@ -1,22 +1,27 @@
+/* La section principale contenant les cartes de formulaire */
 main {
   display: flex;
   justify-content: center;
   height: 87.5vh;
 }
 
+/* Mise en forme pour les labels */
 label {
   display: flex;
 }
 
+/* Mise en forme pour centrer le contenu */
 .adjust {
-  text-align:center;
+  text-align: center;
 }
 
-.error{
+/* Mise en forme pour les messages d'erreur */
+.error {
   color: darkred;
   font-size: 12px;
 }
 
+/* Mise en forme pour les boutons */
 .button {
   margin-top: 1rem;
   border-radius: 15px;
@@ -28,18 +33,22 @@ label {
   height: 2rem;
 }
 
+/* Animation de survol des boutons */
 .button:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
+/* Animation lorsqu'un bouton est activé */
 .button:active {
   transform: translateY(-3px) scale(0.95);
 }
 
+/* Mise en forme pour le conteneur de cartes */
 .card-container {
   display: flex;
 }
 
+/* Mise en forme des cartes de formulaire */
 .card {
   width: 400px;
   background-color: goldenrod;
@@ -51,6 +60,7 @@ label {
   margin: 1rem;
 }
 
+/* Mise en forme pour les champs d'entrée */
 .input {
   display: flex;
   flex-direction: column;
@@ -58,6 +68,13 @@ label {
   width: 200px;
 }
 
+/* Mise en forme pour les paragraphes dans les cartes */
 .card p {
   text-align: left;
 }
+/*Ce code CSS définit des styles pour une mise en forme cohérente et agréable des éléments de votre interface utilisateur. Les commentaires ajoutés dans le code expliquent la fonction de chaque section de styles.*/
+
+
+
+
+

@@ -1,34 +1,37 @@
+/* Style pour la balise <nav> */
 nav {
-  padding: 1rem 2rem;
-  width: 20vw;
-  height: 87.5vh;
-  background-color: #929283;
-  color: white;
-  font-size: 1.5rem;
+  padding: 1rem 2rem; /* Espacement intérieur de 1rem en haut et en bas, et 2rem à gauche et à droite */
+  width: 20vw; /* Largeur de 20 % de la largeur de la vue (viewport) */
+  height: 87.5vh; /* Hauteur de 87.5 % de la hauteur de la vue */
+  background-color: #929283; /* Couleur de fond gris-vert */
+  color: white; /* Couleur du texte en blanc */
+  font-size: 1.5rem; /* Taille de police de 1.5rem */
+  /* Styles pour les listes imbriquées */
   ul {
-    list-style: none;
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
-    .isActive{
-      color: palegoldenrod;
+    list-style: none; /* Supprime les puces des listes non ordonnées */
+    display: flex; /* Utilise le modèle de boîte flexible pour aligner les éléments horizontalement */
+    align-items: baseline; /* Aligne les éléments sur la ligne de base */
+    flex-direction: column; /* Affiche les éléments en colonne */
+    /* Style pour les éléments actifs (avec la classe CSS isActive) */
+    .isActive {
+      color: palegoldenrod; /* Couleur du texte pour les éléments actifs */
     }
-    ul{
-      padding: 1rem;
-      color: white;
+    /* Styles pour les listes imbriquées à l'intérieur des listes */
+    ul {
+      padding: 1rem; /* Espacement intérieur de 1rem autour des éléments de la liste imbriquée */
+      color: white; /* Couleur du texte en blanc */
     }
   }
 }
 
-a{
-  text-decoration: none;
-  user-select: none;
-  position: relative;
-  color: white;
+/* Style pour les liens <a> */
+a {
+  text-decoration: none; /* Supprime le soulignement des liens */
+  user-select: none; /* Empêche la sélection de texte par l'utilisateur */
+  position: relative; /* Positionnement relatif par rapport à l'élément parent */
+  color: white; /* Couleur du texte en blanc */
 }
-a:hover{
-  color: black;
+/* Style pour les liens <a> au survol */
+a:hover {
+  color: black; /* Couleur du texte en noir au survol */
 }
-
-
-

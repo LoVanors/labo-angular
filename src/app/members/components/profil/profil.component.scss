@@ -1,23 +1,25 @@
-.column{
-  margin: 0 auto;
-  text-align: center;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-}
-input{
-  height: 2rem;
-  margin-top: 1rem;
-}
-main{
-  margin: 0 auto;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-}
-.button{
-  background-color: blue;
-  border-radius: 1rem;
-  color: white;
+.column {
+  margin: 0 auto; /* Centre le contenu horizontalement */
+  text-align: center; /* Centre le texte dans la colonne */
+  width: 240px; /* Définit la largeur de la colonne */
+  display: flex; /* Utilise le modèle de boîte flexible */
+  flex-direction: column; /* Organise le contenu en colonne */
 }
 
+input {
+  height: 2rem; /* Définit la hauteur des champs de saisie */
+  margin-top: 1rem; /* Ajoute un espace en haut du champ de saisie */
+}
+
+main {
+  margin: 0 auto; /* Centre le contenu principal horizontalement */
+  text-align: center; /* Centre le texte dans le contenu principal */
+  justify-content: center; /* Centre le contenu verticalement */
+  align-content: center; /* Centre le contenu horizontalement */
+}
+
+.button {
+  background-color: blue; /* Définit la couleur de fond du bouton */
+  border-radius: 1rem; /* Ajoute des coins arrondis au bouton */
+  color: white; /* Définit la couleur du texte du bouton */
+}
